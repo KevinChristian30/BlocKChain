@@ -1,4 +1,5 @@
 #include <stdio.h>
+#include <conio.h>
 
 #include "../headers/utility.h"
 #include "../headers/validator.h" 
@@ -71,14 +72,51 @@ namespace registerScreen{
 
   void getPassword(char storage[]){
 
+    const short offset = 18;
     while (true){
 
       utility::clear();
       displayHeader();
 
       printf("Enter Password >> ");
-      scanf("%[^\n]", storage);
-      getchar();
+
+      char input[BUFFERSIZE] = "";
+      int currentIndex = 0;
+      
+      while (true){
+        
+        char c = getch();
+        
+        if (c == 8){
+          
+          if (currentIndex == 0) {
+            utility::moveCursor(offset + currentIndex, 2);
+            printf(" ");
+            continue;
+          }
+
+          input[currentIndex] = '\0';
+          utility::moveCursor(offset + currentIndex, 2);
+          printf(" ");
+          currentIndex--;
+          
+        } else if (c == 13) {
+          
+          break;
+          
+        } else {
+          
+          input[currentIndex] = c;
+          utility::moveCursor(offset + currentIndex, 2);
+          printf("*");
+          currentIndex++;
+          
+        } 
+
+      }
+
+      puts("");
+      strncpy(storage, input, BUFFERSIZE);
 
       // Validate Password's Length Must At Least be 10 Characters Long
       if (!validator::minLength(storage, 10)){
