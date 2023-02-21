@@ -1,0 +1,5 @@
+namespace utility{
+
+  void clear();
+
+}

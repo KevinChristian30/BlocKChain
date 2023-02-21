@@ -1,0 +1,5 @@
+namespace exitScreen{
+
+  void loop();
+  
+}
