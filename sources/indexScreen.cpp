@@ -6,7 +6,7 @@
 #include "../headers/loginScreen.h"
 #include "../headers/registerScreen.h"
 
-namespace mainMenuScreen{
+namespace indexScreen{
 
   #define BUFFERSIZE 255
 
@@ -25,7 +25,9 @@ namespace mainMenuScreen{
 
   void displayLogo(){
 		
+    utility::setColor("FOREGROUND_GREEN");
 		for (int i = 0; i < 8; i++) printf("%s\n", LOGO[i]);
+    utility::setColor("FOREGROUND_WHITE");
 		
 	}
 	

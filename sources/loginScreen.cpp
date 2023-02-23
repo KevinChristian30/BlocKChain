@@ -5,6 +5,7 @@
 
 #include "../headers/utility.h"
 #include "../headers/database.h"
+#include "../headers/mainMenu.h"
 
 namespace loginScreen{
 
@@ -98,8 +99,7 @@ namespace loginScreen{
 
     }
 
-    puts("Correct Password");
-    getchar();
+    mainMenu::loop(user);
 
   }
 

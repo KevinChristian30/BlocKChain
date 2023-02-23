@@ -1,14 +1,14 @@
 
 CXX=g++
 
-output: main.o mainMenuScreen.o utility.o exitScreen.o loginScreen.o registerScreen.o validator.o database.o Account.o globals.o
-	$(CXX) main.o mainMenuScreen.o utility.o exitScreen.o loginScreen.o registerScreen.o validator.o database.o Account.o globals.o -o BlocKChain
+output: main.o indexScreen.o utility.o exitScreen.o loginScreen.o registerScreen.o validator.o database.o Account.o globals.o mainMenu.o
+	$(CXX) main.o indexScreen.o utility.o exitScreen.o loginScreen.o registerScreen.o validator.o database.o Account.o globals.o mainMenu.o -o BlocKChain
 
 main.o: main.cpp
 	$(CXX) -c main.cpp
 
-mainMenuScreen.o: sources/mainMenuScreen.cpp headers/mainMenuScreen.h
-	$(CXX) -c sources/mainMenuScreen.cpp
+indexScreen.o: sources/indexScreen.cpp headers/indexScreen.h
+	$(CXX) -c sources/indexScreen.cpp
 
 utility.o: sources/utility.cpp headers/utility.h
 	$(CXX) -c sources/utility.cpp
@@ -30,6 +30,9 @@ database.o: sources/database.cpp headers/database.h
 
 globals.o: sources/globals.cpp headers/globals.h
 	$(CXX) -c sources/globals.cpp
+
+mainMenu.o: sources/mainMenu.cpp headers/mainMenu.h
+	$(CXX) -c sources/mainMenu.cpp
 
 Account.o: models/Account.cpp models/Account.h
 	$(CXX) -c models/Account.cpp

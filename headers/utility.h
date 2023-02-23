@@ -8,10 +8,6 @@ namespace utility{
 
   void animateString(const char* toAnimate, unsigned long long int delay);
 
-  namespace hash{
-
-    std::string ShaKCe(char input[]);
-
-  }
+  void setColor(const char* color);
 
 }

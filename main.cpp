@@ -1,8 +1,8 @@
-#include "headers/mainMenuScreen.h"
+#include "headers/indexScreen.h"
 
 int main(){
 
-  mainMenuScreen::loop();
+  indexScreen::loop();
 
   return 0;
 }

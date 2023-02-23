@@ -1,4 +1,4 @@
-namespace mainMenuScreen{
+namespace indexScreen{
 
   void displayLogo();
 

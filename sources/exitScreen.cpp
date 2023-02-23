@@ -49,12 +49,14 @@ namespace exitScreen{
     
     };
 
+    utility::setColor("FOREGROUND_BLUE");
     for (int i = 0; i < 37; i++) {
 
       for (int j = 0; j < 82; j++) printf("%c", LOGO[i][j]);
       Sleep(10);
 
     }
+    utility::setColor("FOREGROUND_WHITE");
 
   }
 
