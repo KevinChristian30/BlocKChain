@@ -4,6 +4,9 @@
 
 #include <vector>
 
+#ifndef UTILITY_H
+#define UTILITY_H
+
 namespace utility{
 
   #define BUFFERSIZE 255
@@ -51,3 +54,5 @@ namespace utility{
   }
 
 }
+
+#endif

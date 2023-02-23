@@ -6,6 +6,9 @@
 
 #include "../headers/database.h"
 
+#ifndef REGISTERSCREEN_H
+#define REGISTERSCREEN_H
+
 namespace registerScreen{
 
   #define BUFFERSIZE 255
@@ -156,3 +159,5 @@ namespace registerScreen{
   }
 
 }
+
+#endif

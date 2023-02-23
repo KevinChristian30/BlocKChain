@@ -3,6 +3,9 @@
 #include "../models/Account.h"
 #include "../headers/utility.h"
 
+#ifndef MAINMENUSCREEN_H
+#define MAINMENUSCREEN_H
+
 namespace mainMenu{
 
   Account *currentUser;
@@ -28,3 +31,5 @@ namespace mainMenu{
   }
 
 }
+
+#endif

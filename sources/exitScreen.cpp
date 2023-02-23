@@ -3,6 +3,9 @@
 
 #include "../headers/utility.h"
 
+#ifndef EXITSCREEN_H
+#define EXITSCREEN_H
+
 namespace exitScreen{
 
   void displayLogo(){
@@ -72,3 +75,5 @@ namespace exitScreen{
   }
 
 }
+
+#endif

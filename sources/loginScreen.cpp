@@ -7,6 +7,9 @@
 #include "../headers/database.h"
 #include "../headers/mainMenu.h"
 
+#ifndef LOGINSCREEN_H
+#define LOGINSCREEN_H
+
 namespace loginScreen{
 
   #define BUFFERSIZE 255
@@ -104,3 +107,5 @@ namespace loginScreen{
   }
 
 }
+
+#endif

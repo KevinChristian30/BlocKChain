@@ -6,6 +6,9 @@
 #include "../headers/loginScreen.h"
 #include "../headers/registerScreen.h"
 
+#ifndef INDEXSCREEN_H
+#define INDEXSCREEN_H
+
 namespace indexScreen{
 
   #define BUFFERSIZE 255
@@ -92,3 +95,4 @@ namespace indexScreen{
 
 }
 
+#endif
