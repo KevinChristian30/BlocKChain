@@ -1,3 +1,5 @@
+#include <iostream>
+
 namespace utility{
 
   void clear();
@@ -8,7 +10,7 @@ namespace utility{
 
   namespace hash{
 
-    void SHA1(char input[]);
+    std::string ShaKCe(char input[]);
 
   }
 

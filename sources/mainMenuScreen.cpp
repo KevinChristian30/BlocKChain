@@ -1,13 +1,14 @@
 #include <stdio.h>
 #include <string.h>
 
-#include "globals.cpp"
 #include "../headers/utility.h"
 #include "../headers/exitScreen.h"
 #include "../headers/loginScreen.h"
 #include "../headers/registerScreen.h"
 
 namespace mainMenuScreen{
+
+  #define BUFFERSIZE 255
 
   const char LOGO[8 + 1][88 + 1] = {
 

@@ -4,13 +4,14 @@
 #include "../headers/utility.h"
 #include "../headers/validator.h" 
 
-#include "../database.cpp"
+#include "../headers/database.h"
 
 namespace registerScreen{
 
+  #define BUFFERSIZE 255
+
   void displayHeader(){
 		
-		utility::clear();
 		puts("Register");
 		puts("========");
 		
@@ -47,9 +48,8 @@ namespace registerScreen{
 
       // Validate Username Must be Unique
       bool isUniqueUsername = true;
-
       std::vector<Account*> accounts = database::account::getAccounts();
-      for (const auto& account : accounts){
+      for (Account* account : accounts){
 
         if (strncmp(storage, account->username, BUFFERSIZE) == 0){
 
@@ -77,7 +77,6 @@ namespace registerScreen{
 
       utility::clear();
       displayHeader();
-
       printf("Enter Password >> ");
 
       char input[BUFFERSIZE] = "";

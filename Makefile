@@ -1,8 +1,8 @@
 
 CXX=g++
 
-output: main.o mainMenuScreen.o utility.o exitScreen.o loginScreen.o registerScreen.o validator.o
-	$(CXX) main.o mainMenuScreen.o utility.o exitScreen.o loginScreen.o registerScreen.o validator.o -o BlocKChain
+output: main.o mainMenuScreen.o utility.o exitScreen.o loginScreen.o registerScreen.o validator.o database.o Account.o globals.o
+	$(CXX) main.o mainMenuScreen.o utility.o exitScreen.o loginScreen.o registerScreen.o validator.o database.o Account.o globals.o -o BlocKChain
 
 main.o: main.cpp
 	$(CXX) -c main.cpp
@@ -24,5 +24,15 @@ registerScreen.o: sources/registerScreen.cpp headers/registerScreen.h
 
 validator.o: sources/validator.cpp headers/validator.h
 	$(CXX) -c sources/validator.cpp
+
+database.o: sources/database.cpp headers/database.h
+	$(CXX) -c sources/database.cpp
+
+globals.o: sources/globals.cpp headers/globals.h
+	$(CXX) -c sources/globals.cpp
+
+Account.o: models/Account.cpp models/Account.h
+	$(CXX) -c models/Account.cpp
+
 clean:
 	del *.o BlocKChain.exe
