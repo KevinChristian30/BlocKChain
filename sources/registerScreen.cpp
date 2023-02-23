@@ -1,13 +1,13 @@
 #include <stdio.h>
 #include <conio.h>
+#include <vector>
+
+#ifndef REGISTERSCREEN_CPP
+#define REGISTERSCREEN_CPP
 
 #include "../headers/utility.h"
-#include "../headers/validator.h" 
-
+#include "../headers/validator.h"
 #include "../headers/database.h"
-
-#ifndef REGISTERSCREEN_H
-#define REGISTERSCREEN_H
 
 namespace registerScreen{
 

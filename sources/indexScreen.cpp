@@ -1,13 +1,13 @@
 #include <stdio.h>
 #include <string.h>
 
+#ifndef INDEXSCREEN_CPP
+#define INDEXSCREEN_CPP
+
 #include "../headers/utility.h"
-#include "../headers/exitScreen.h"
 #include "../headers/loginScreen.h"
 #include "../headers/registerScreen.h"
-
-#ifndef INDEXSCREEN_H
-#define INDEXSCREEN_H
+#include "../headers/exitScreen.h"
 
 namespace indexScreen{
 

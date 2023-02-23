@@ -1,4 +1,5 @@
-#include <iostream>
+#ifndef UTILITY_H
+#define UTILITY_H
 
 namespace utility{
 
@@ -11,3 +12,5 @@ namespace utility{
   void setColor(const char* color);
 
 }
+
+#endif

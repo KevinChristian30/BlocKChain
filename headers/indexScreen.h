@@ -1,3 +1,6 @@
+#ifndef INDEXSCREEN_H
+#define INDEXSCREEN_H
+
 namespace indexScreen{
 
   void displayLogo();
@@ -13,3 +16,5 @@ namespace indexScreen{
   void route(char input[]);
 
 }
+
+#endif

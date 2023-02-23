@@ -1,12 +1,12 @@
 #include <stdio.h>
 
+#ifndef MAINMENUSCREEN_CPP
+#define MAINMENUSCREEN_CPP
+
 #include "../models/Account.h"
 #include "../headers/utility.h"
 
-#ifndef MAINMENUSCREEN_H
-#define MAINMENUSCREEN_H
-
-namespace mainMenu{
+namespace mainMenuScreen{
 
   Account *currentUser;
 

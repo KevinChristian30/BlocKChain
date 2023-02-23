@@ -1,3 +1,6 @@
+#ifndef REGISTERSCREEN_H
+#define REGISTERSCREEN_H
+
 namespace registerScreen{
 
   void loop();
@@ -9,3 +12,5 @@ namespace registerScreen{
   void getPassword(char storage[]);
 
 }
+
+#endif

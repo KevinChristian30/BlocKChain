@@ -3,12 +3,12 @@
 
 #include <vector>
 
+#ifndef LOGINSCREEN_CPP
+#define LOGINSCREEN_CPP
+
 #include "../headers/utility.h"
 #include "../headers/database.h"
-#include "../headers/mainMenu.h"
-
-#ifndef LOGINSCREEN_H
-#define LOGINSCREEN_H
+#include "../headers/mainMenuScreen.h"
 
 namespace loginScreen{
 
@@ -102,7 +102,7 @@ namespace loginScreen{
 
     }
 
-    mainMenu::loop(user);
+    mainMenuScreen::loop(user);
 
   }
 

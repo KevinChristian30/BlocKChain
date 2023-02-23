@@ -1,10 +1,10 @@
 #include <stdio.h>
 #include <windows.h>
 
-#include "../headers/utility.h"
+#ifndef EXITSCREEN_CPP
+#define EXITSCREEN_CPP
 
-#ifndef EXITSCREEN_H
-#define EXITSCREEN_H
+#include "../headers/utility.h"
 
 namespace exitScreen{
 

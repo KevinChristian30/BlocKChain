@@ -1,6 +1,9 @@
 #include <string.h>
 #include <malloc.h>
 
+#ifndef ACCOUNT_CPP
+#define ACCOUNT_CPP
+
 struct Account{
 
   char username[255];
@@ -16,3 +19,5 @@ Account* createAccount(char username[], char password[]){
   return newAccount;
 
 }
+
+#endif

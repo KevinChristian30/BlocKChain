@@ -4,8 +4,8 @@
 
 #include <vector>
 
-#ifndef UTILITY_H
-#define UTILITY_H
+#ifndef UTILITY_CPP
+#define UTILITY_CPP
 
 namespace utility{
 

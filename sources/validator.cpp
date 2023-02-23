@@ -1,7 +1,7 @@
 #include <string.h>
 
-#ifndef VALIDATOR_H
-#define VALIDATOR_H
+#ifndef VALIDATOR_CPP
+#define VALIDATOR_CPP
 
 namespace validator{
 
