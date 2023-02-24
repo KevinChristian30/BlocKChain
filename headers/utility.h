@@ -11,6 +11,8 @@ namespace utility{
 
   void setColor(const char* color);
 
+  void putLine(const char character, int numberOfTimes);
+
 }
 
 #endif

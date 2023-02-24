@@ -1,8 +1,8 @@
 
 CXX=g++
 
-output: main.o indexScreen.o utility.o exitScreen.o loginScreen.o registerScreen.o validator.o database.o Account.o globals.o mainMenuScreen.o myAccountScreen.o changePasswordScreen.o transactionScreen.o sendMoneyScreen.o
-	$(CXX) main.o indexScreen.o utility.o exitScreen.o loginScreen.o registerScreen.o validator.o database.o Account.o globals.o mainMenuScreen.o myAccountScreen.o changePasswordScreen.o transactionScreen.o sendMoneyScreen.o -o BlocKChain
+output: main.o indexScreen.o utility.o exitScreen.o loginScreen.o registerScreen.o validator.o database.o Account.o globals.o mainMenuScreen.o myAccountScreen.o changePasswordScreen.o transactionScreen.o sendMoneyScreen.o Transaction.o
+	$(CXX) main.o indexScreen.o utility.o exitScreen.o loginScreen.o registerScreen.o validator.o database.o Account.o globals.o mainMenuScreen.o myAccountScreen.o changePasswordScreen.o transactionScreen.o sendMoneyScreen.o Transaction.o -o BlocKChain
 
 main.o: main.cpp
 	$(CXX) -c main.cpp
@@ -48,6 +48,9 @@ sendMoneyScreen.o: sources/sendMoneyScreen.cpp headers/sendMoneyScreen.h
 
 Account.o: models/Account.cpp models/Account.h
 	$(CXX) -c models/Account.cpp
+
+Transaction.o: models/Transaction.cpp models/Transaction.h
+	$(CXX) -c models/Transaction.cpp
 
 clean:
 	del *.o BlocKChain.exe

@@ -53,6 +53,13 @@ namespace utility{
 
   }
 
+  void putLine(const char character, int numberOfTimes){
+
+    for (int i = 0; i < numberOfTimes; i++) printf("%c", character);
+    puts("");
+
+  }
+
 }
 
 #endif
