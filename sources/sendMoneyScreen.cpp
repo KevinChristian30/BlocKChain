@@ -74,6 +74,33 @@ namespace sendMoneyScreen{
 
     }
 
+    int createPagination(){
+
+      std::vector<Account*> accounts = database::account::getAccounts();
+      
+      int i = 0;
+      Account* partition[11];
+      for (int i = 0; i < 10; i++) partition[i] = NULL;
+      for (Account* account : accounts){
+        
+        if (i >= 10) {
+
+          circularDoublyLinkedList::insert(partition);
+          for (int j = 0; j < 10; j++) partition[j] = NULL;
+          i = 0;
+
+        } 
+
+        partition[i++] = account;
+
+      }
+
+      circularDoublyLinkedList::insert(partition);
+
+      return accounts.size() / 10;
+
+    }
+
   }
 
   void displayLogo(){
@@ -104,62 +131,101 @@ namespace sendMoneyScreen{
 
   }
 
-  void getReceiver(char storage[]){
+  namespace receiver{
 
-    // Display List of Users Paginated for 10 Items Each Page with Circular Doubly Linked List
-    std::vector<Account*> accounts = database::account::getAccounts();
-    int maxPage = accounts.size() / 10;
-    
-    int i = 0;
-    Account* partition[11];
-    for (int i = 0; i < 10; i++) partition[i] = NULL;
-    for (Account* account : accounts){
-      
-      if (i >= 10) {
+    void display(int pageNumber, circularDoublyLinkedList::Node* current){
 
-        circularDoublyLinkedList::insert(partition);
-        for (int j = 0; j < 10; j++) partition[j] = NULL;
-        i = 0;
+      utility::clear();
+      displayHeader();
+      circularDoublyLinkedList::display(pageNumber, current);
 
-      } 
-
-      partition[i++] = account;
+      puts("1. Prev");
+      puts("2. Next");
+      puts("3. Enter Username");
+      puts("4. Back");
+      printf(">> ");
 
     }
 
-    circularDoublyLinkedList::insert(partition);
+    void getInput(char storage[]){
 
-    circularDoublyLinkedList::Node* current = circularDoublyLinkedList::HEAD;
-    int pageNumber = 0;
-    char input[BUFFERSIZE];
-
-    while (true){
-
-      utility::clear();
-      circularDoublyLinkedList::display(pageNumber, current);
-      puts("1. Next");
-      puts("2. Prev");
-      printf(">> ");
-      scanf("%[^\n]", input);
+      scanf("%[^\n]", storage);
       getchar();
 
-      if (strncmp(input, "1", BUFFERSIZE) == 0) {
-      
-        current = current->next;
-        pageNumber++;
-        if (pageNumber > maxPage) pageNumber = 0;
+    }
 
-      
-      } else if (strncmp(input, "2", BUFFERSIZE) == 0){
+  }
+
+  bool getReceiver(char storage[]){
+
+    int maxPage = circularDoublyLinkedList::createPagination();
+
+    circularDoublyLinkedList::Node* current = circularDoublyLinkedList::HEAD;
+
+    int pageNumber = 0;
+    char input[BUFFERSIZE];
+    while (true){
+
+      receiver::display(pageNumber, current);
+      receiver::getInput(input);
+
+      if (strncmp(input, "1", BUFFERSIZE) == 0) {
       
         current = current->prev;
         pageNumber--;
         if (pageNumber < 0) pageNumber = maxPage;
+
+      } else if (strncmp(input, "2", BUFFERSIZE) == 0){
+
+        current = current->next;
+        pageNumber++;
+        if (pageNumber > maxPage) pageNumber = 0;
         
-      
+      } else if (strncmp(input, "3", BUFFERSIZE) == 0){
+
+        utility::clear();
+        displayHeader();
+        circularDoublyLinkedList::display(pageNumber, current);
+        
+        printf("\nEnter Username: ");
+        
+        // Scan For Username
+        scanf("%[^\n]", storage);
+        getchar();
+
+        // Validate Must Exist
+        Account* receiverAccount = database::account::findByUsername(storage);
+        if (!receiverAccount) {
+          
+          puts("");
+          utility::setColor("FOREGROUND_RED");
+          printf("Username Not Found! Press Enter to Try Again");
+          utility::setColor("FOREGROUND_WHITE");
+          
+          getchar();
+          continue;
+        
+        }
+
+        return true;
+
+      } else if (strncmp(input, "4", BUFFERSIZE) == 0){
+
+        return false;
+
       }
 
     }
+
+  }
+
+  void getAmount(unsigned long long int *storage){
+
+    utility::clear();
+    displayHeader();
+    printf("\nEnter Amount to Send: ");
+    scanf("%llu", storage);
+    getchar();
 
   }
 
@@ -174,14 +240,48 @@ namespace sendMoneyScreen{
       utility::clear();
       displayHeader();
 
-      getReceiver(newTransaction.receiver);
+      // Get Receiver
+      if (!getReceiver(newTransaction.receiver)){
 
-      puts("IN");
-      getchar();
+        puts("");
+        utility::setColor("FOREGROUND_RED");
+        utility::animateString("Transaction Cancelled! Press Enter to Continue", 20);
+        utility::setColor("FOREGROUND_WHITE");
+        
+        fflush(stdin);
+        getchar();
+        break;
 
-      // Get Destination
+      }
+
       // Get Amount
+      while (true){
+
+        getAmount(&newTransaction.amount);
+        if (newTransaction.amount > currentUser->fund){
+
+          utility::setColor("FOREGROUND_RED");
+          printf("\nYou don't Have Enough Money! Press Enter to Continue");
+          utility::setColor("FOREGROUND_WHITE");
+          getchar();
+
+        } else break;
+
+      }
+
       // Create and Save Transaction to Transactions List
+      Transaction* toCreate = createTransaction(newTransaction.sender, newTransaction.receiver, newTransaction.amount);
+      
+      // Update Sender's Token Count
+      currentUser->fund -= toCreate->amount;
+      database::account::update(currentUser);
+      // Store new Transaction
+      database::transaction::create(*toCreate);
+      
+      utility::setColor("FOREGROUND_GREEN");
+      utility::animateString("\nTransaction Inserted Succesfully", 20);
+      utility::setColor("FOREGROUND_WHITE");
+      getchar();
 
     }
 

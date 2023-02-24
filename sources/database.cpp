@@ -7,6 +7,7 @@
 #define DATABASE_CPP
 
 #include "../models/Account.h"
+#include "../models/Transaction.h"
 
 namespace database{
 
@@ -14,7 +15,6 @@ namespace database{
 
   namespace account{
 
-    // Create
     void create(Account newAccount){
 
       FILE* file = fopen("./database/accounts.txt", "a");
@@ -23,7 +23,6 @@ namespace database{
 
     }
 
-    // Read
     std::vector<Account*> getAccounts(){
 
       std::vector<Account*> accounts;
@@ -40,7 +39,6 @@ namespace database{
 
     }
 
-    // Update
     void update(Account* toUpdate){
 
       std::vector<Account*> accounts = getAccounts();
@@ -49,6 +47,7 @@ namespace database{
         if (strncmp(account->username, toUpdate->username, BUFFERSIZE) == 0){
 
           strncpy(account->password, toUpdate->password, BUFFERSIZE);
+          account->fund = toUpdate->fund;
           break;
 
         } 
@@ -64,9 +63,6 @@ namespace database{
 
     }
 
-    // Delete
-
-    // Find
     Account* findByUsername(const char* username){
 
       std::vector<Account*> accounts = getAccounts();
@@ -78,6 +74,18 @@ namespace database{
       }
 
       return NULL;
+
+    }
+
+  }
+
+  namespace transaction{
+
+    void create(Transaction newTransaction){
+
+      FILE* file = fopen("./database/transactions.txt", "a");
+      fprintf(file, "%s#%s#%llu#%s#%s", newTransaction.sender, newTransaction.receiver, newTransaction.amount, newTransaction.hash, newTransaction.time);
+      fclose(file);
 
     }
 

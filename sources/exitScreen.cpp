@@ -67,7 +67,7 @@ namespace exitScreen{
 
     utility::clear();
     displayLogo();
-    utility::animateString("'Wonderful Things can be Achieved when there's Teamwork, Hardwork, and Perseverance!' - Bluejackets 22-2", 10);
+    utility::animateString("'Wonderful Things can be Achieved when there's Teamwork, Hardwork, and Perseverance!' - Bluejackets 22-2", 20);
     getchar();
 
     exit(0);

@@ -4,6 +4,7 @@
 #define DATABASE_H
 
 #include "../models/Account.h"
+#include "../models/Transaction.h"
 
 namespace database{
 
@@ -16,6 +17,12 @@ namespace database{
     Account* findByUsername(const char* username);
 
     void update(Account* account);
+
+  }
+
+  namespace transaction{
+
+    void create(Transaction newTransaction);
 
   }
 

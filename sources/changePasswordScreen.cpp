@@ -141,7 +141,7 @@ namespace changePasswordScreen{
 
     puts("");
     utility::setColor("FOREGROUND_GREEN");
-    utility::animateString("Password Updated!", 10);
+    utility::animateString("Password Updated!", 20);
     utility::setColor("FOREGROUND_WHITE");
 
     getchar();
