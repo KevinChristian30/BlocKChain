@@ -1,8 +1,8 @@
 
 CXX=g++
 
-output: main.o indexScreen.o utility.o exitScreen.o loginScreen.o registerScreen.o validator.o database.o Account.o globals.o mainMenuScreen.o
-	$(CXX) main.o indexScreen.o utility.o exitScreen.o loginScreen.o registerScreen.o validator.o database.o Account.o globals.o mainMenuScreen.o -o BlocKChain
+output: main.o indexScreen.o utility.o exitScreen.o loginScreen.o registerScreen.o validator.o database.o Account.o globals.o mainMenuScreen.o myAccountScreen.o changePasswordScreen.o
+	$(CXX) main.o indexScreen.o utility.o exitScreen.o loginScreen.o registerScreen.o validator.o database.o Account.o globals.o mainMenuScreen.o myAccountScreen.o changePasswordScreen.o -o BlocKChain
 
 main.o: main.cpp
 	$(CXX) -c main.cpp
@@ -33,6 +33,12 @@ globals.o: sources/globals.cpp headers/globals.h
 
 mainMenuScreen.o: sources/mainMenuScreen.cpp headers/mainMenuScreen.h
 	$(CXX) -c sources/mainMenuScreen.cpp
+
+myAccountScreen.o: sources/myAccountScreen.cpp headers/myAccountScreen.h
+	$(CXX) -c sources/myAccountScreen.cpp
+
+changePasswordScreen.o: sources/changePasswordScreen.cpp headers/changePasswordScreen.h
+	$(CXX) -c sources/changePasswordScreen.cpp
 
 Account.o: models/Account.cpp models/Account.h
 	$(CXX) -c models/Account.cpp

@@ -15,6 +15,8 @@ namespace database{
 
     Account* findByUsername(const char* username);
 
+    void update(Account* account);
+
   }
 
 }

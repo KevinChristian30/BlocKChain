@@ -5,26 +5,82 @@
 
 #include "../models/Account.h"
 #include "../headers/utility.h"
+#include "../sources/globals.cpp"
+#include "../headers/myAccountScreen.h"
 
 namespace mainMenuScreen{
 
   Account *currentUser;
 
-  void display(){
+  void displayLogo(){
 
-    puts("Main Menu");
+    const char logo[8+ 1][86 + 1] = {
+      
+      " /$$      /$$           /$$                 /$$      /$$                              ",
+      "| $$$    /$$$          |__/                | $$$    /$$$                              ",
+      "| $$$$  /$$$$  /$$$$$$  /$$ /$$$$$$$       | $$$$  /$$$$  /$$$$$$  /$$$$$$$  /$$   /$$",
+      "| $$ $$/$$ $$ |____  $$| $$| $$__  $$      | $$ $$/$$ $$ /$$__  $$| $$__  $$| $$  | $$",
+      "| $$  $$$| $$  /$$$$$$$| $$| $$  \\ $$      | $$  $$$| $$| $$$$$$$$| $$  \\ $$| $$  | $$",
+      "| $$\\  $ | $$ /$$__  $$| $$| $$  | $$      | $$\\  $ | $$| $$_____/| $$  | $$| $$  | $$",
+      "| $$ \\/  | $$|  $$$$$$$| $$| $$  | $$      | $$ \\/  | $$|  $$$$$$$| $$  | $$|  $$$$$$/",
+      "|__/     |__/ \\_______/|__/|__/  |__/      |__/     |__/ \\_______/|__/  |__/ \\______/ "
+                                                                                      
+    };
+
+    utility::setColor("FOREGROUND_GREEN");
+    for (short i = 0; i < 8; i++) printf("%s\n", logo[i]);
+    utility::setColor("FOREGROUND_WHITE");
 
   }
 
-  void loop(Account *currentUser){
+  void display(){
 
+    utility::clear();
+    displayLogo();
+    
+    printf("\nWelcome,");
+
+    utility::setColor("FOREGROUND_BLUE");
+    printf(" %s\n\n", currentUser->username);
+    utility::setColor("FOREGROUND_WHITE");
+
+    puts("1. Funds");
+    puts("2. Transactions");
+    puts("3. My Account");
+    puts("4. Log Out");
+    printf(">> ");
+
+  }
+
+  void getInput(char storage[]){
+
+    scanf("%[^\n]", storage);
+    getchar();
+
+  }
+
+  bool route(char input[]){
+
+    if (strncmp(input, "1", BUFFERSIZE) == 0) printf("Funds");
+    else if (strncmp(input, "2", BUFFERSIZE) == 0) printf("Transactions");
+    else if (strncmp(input, "3", BUFFERSIZE) == 0) myAccountScreen::loop(currentUser);
+    else if (strncmp(input, "4", BUFFERSIZE) == 0) return false;
+    
+    return true;
+
+  }
+
+  void loop(Account *user){
+
+    currentUser = user;
+
+    char input[BUFFERSIZE];
     while (true){
 
-      utility::clear();
-      
+      utility::clear();      
       display();
-      
-      getchar();
+      getInput(input);
+      if (!route(input)) break;
 
     }
 

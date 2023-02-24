@@ -97,8 +97,8 @@ namespace registerScreen{
             continue;
           }
 
-          input[currentIndex] = '\0';
-          utility::moveCursor(offset + currentIndex, 2);
+          input[currentIndex - 1] = '\0';
+          utility::moveCursor(offset + currentIndex - 1, 2);
           printf(" ");
           currentIndex--;
           
@@ -150,6 +150,7 @@ namespace registerScreen{
 
     getUsername(newAccount.username);
     getPassword(newAccount.password);
+    newAccount.fund = 0;
     database::account::create(newAccount);
 
     utility::clear();

@@ -52,8 +52,8 @@ namespace loginScreen{
           continue;
         }
 
-        storage[currentIndex] = '\0';
-        utility::moveCursor(offset + currentIndex, 2);
+        storage[currentIndex - 1] = '\0';
+        utility::moveCursor(offset + currentIndex - 1, 2);
         printf(" ");
         currentIndex--;
         
