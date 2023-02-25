@@ -4,10 +4,12 @@
 #define MAINMENUSCREEN_CPP
 
 #include "../models/Account.h"
+
 #include "../headers/utility.h"
 #include "../sources/globals.cpp"
 #include "../headers/myAccountScreen.h"
 #include "../headers/transactionScreen.h"
+#include "../headers/fundScreen.h"
 
 namespace mainMenuScreen{
 
@@ -62,7 +64,7 @@ namespace mainMenuScreen{
 
   bool route(char input[]){
 
-    if (strncmp(input, "1", BUFFERSIZE) == 0) printf("Funds");
+    if (strncmp(input, "1", BUFFERSIZE) == 0) fundScreen::loop(currentUser);
     else if (strncmp(input, "2", BUFFERSIZE) == 0) transactionScreen::loop(currentUser);
     else if (strncmp(input, "3", BUFFERSIZE) == 0) myAccountScreen::loop(currentUser);
     else if (strncmp(input, "4", BUFFERSIZE) == 0) return false;

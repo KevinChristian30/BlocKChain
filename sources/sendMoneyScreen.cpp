@@ -219,10 +219,11 @@ namespace sendMoneyScreen{
 
   }
 
-  void getAmount(unsigned long long int *storage){
+  void getAmount(unsigned long long int *storage, Account* currentUser){
 
     utility::clear();
     displayHeader();
+    printf("Your Blue Tokens: %llu", currentUser->fund);
     printf("\nEnter Amount to Send: ");
     scanf("%llu", storage);
     getchar();
@@ -257,7 +258,7 @@ namespace sendMoneyScreen{
       // Get Amount
       while (true){
 
-        getAmount(&newTransaction.amount);
+        getAmount(&newTransaction.amount, currentUser);
         if (newTransaction.amount > currentUser->fund){
 
           utility::setColor("FOREGROUND_RED");
