@@ -7,6 +7,7 @@
 #include "../headers/globals.h"
 #include "../headers/utility.h"
 #include "../headers/sendMoneyScreen.h"
+#include "../headers/viewTransactionScreen.h"
 
 namespace transactionScreen{
 
@@ -53,7 +54,7 @@ namespace transactionScreen{
 
   bool route(char input[]){
 
-    if (strncmp(input, "1", BUFFERSIZE) == 0) puts("View Transactions");
+    if (strncmp(input, "1", BUFFERSIZE) == 0) viewTransactionScreen::loop(currentUser);
     else if (strncmp(input, "2", BUFFERSIZE) == 0) sendMoneyScreen::loop(currentUser);
     else if (strncmp(input, "3", BUFFERSIZE) == 0) return false;
 

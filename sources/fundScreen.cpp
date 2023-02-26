@@ -122,7 +122,8 @@ namespace fundScreen{
 
       }
 
-      Transaction* toCreate = createTransaction((char*) "WD", currentUser->username, (unsigned long long int) buffer);
+      Transaction* toCreate = createTransaction(currentUser->username,
+      (char*) "WD", (unsigned long long int) buffer);
       database::transaction::create(*toCreate);
 
       utility::setColor("FOREGROUND_GREEN");

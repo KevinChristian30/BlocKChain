@@ -89,6 +89,30 @@ namespace database{
 
     }
 
+    std::vector<Transaction*> getTransactions(){
+
+      std::vector<Transaction*> transactions;
+
+      FILE* file = fopen("./database/transactions.txt", "r");
+
+      Transaction transaction;
+      while (fscanf(file, "%[^#]#%[^#]#%llu#%[^#]#%[^\n]\n", transaction.sender, transaction.receiver,
+       &transaction.amount, transaction.hash, transaction.time) != EOF){
+        
+        Transaction* newTransaction = createTransaction(transaction.sender, transaction.receiver, transaction.amount);
+        strncpy(newTransaction->time, transaction.time, BUFFERSIZE);
+
+        transactions.push_back(newTransaction);
+
+       }
+        
+
+      fclose(file);
+
+      return transactions;
+
+    }
+
   }
 
 }

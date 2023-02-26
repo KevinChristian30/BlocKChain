@@ -1,8 +1,8 @@
 
 CXX=g++
 
-output: main.o indexScreen.o utility.o exitScreen.o loginScreen.o registerScreen.o validator.o database.o Account.o globals.o mainMenuScreen.o myAccountScreen.o changePasswordScreen.o transactionScreen.o sendMoneyScreen.o Transaction.o  fundScreen.o
-	$(CXX) main.o indexScreen.o utility.o exitScreen.o loginScreen.o registerScreen.o validator.o database.o Account.o globals.o mainMenuScreen.o myAccountScreen.o changePasswordScreen.o transactionScreen.o sendMoneyScreen.o Transaction.o fundScreen.o -o BlocKChain
+output: main.o indexScreen.o utility.o exitScreen.o loginScreen.o registerScreen.o validator.o database.o Account.o globals.o mainMenuScreen.o myAccountScreen.o changePasswordScreen.o transactionScreen.o sendMoneyScreen.o Transaction.o  fundScreen.o viewTransactionScreen.o ongoingTransactionScreen.o
+	$(CXX) main.o indexScreen.o utility.o exitScreen.o loginScreen.o registerScreen.o validator.o database.o Account.o globals.o mainMenuScreen.o myAccountScreen.o changePasswordScreen.o transactionScreen.o sendMoneyScreen.o Transaction.o fundScreen.o viewTransactionScreen.o ongoingTransactionScreen.o -o BlocKChain
 
 main.o: main.cpp
 	$(CXX) -c main.cpp
@@ -48,6 +48,12 @@ sendMoneyScreen.o: sources/sendMoneyScreen.cpp headers/sendMoneyScreen.h
 
 fundScreen.o: sources/fundScreen.cpp headers/fundScreen.h
 	$(CXX) -c sources/fundScreen.cpp
+
+viewTransactionScreen.o: sources/viewTransactionScreen.cpp headers/viewTransactionScreen.h
+	$(CXX) -c sources/viewTransactionScreen.cpp
+
+ongoingTransactionScreen.o: sources/ongoingTransactionScreen.cpp headers/ongoingTransactionScreen.h
+	$(CXX) -c sources/ongoingTransactionScreen.cpp
 
 Account.o: models/Account.cpp models/Account.h
 	$(CXX) -c models/Account.cpp

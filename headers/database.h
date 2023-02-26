@@ -24,6 +24,8 @@ namespace database{
 
     void create(Transaction newTransaction);
 
+    std::vector<Transaction*> getTransactions();
+
   }
 
 }
