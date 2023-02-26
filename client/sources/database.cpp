@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include <string.h>
+#include <unistd.h>
 
 #include <vector>
 
@@ -17,7 +18,9 @@ namespace database{
 
     void create(Account newAccount){
 
-      FILE* file = fopen("./database/accounts.txt", "a");
+      FILE* file = fopen("../database/accounts.txt", "r");
+      // FILE* file = fopen("../../database/accounts.txt", "r");
+
       fprintf(file, "%s#%s#%llu\n", newAccount.username, newAccount.password, newAccount.fund);
       fclose(file);
 
@@ -27,7 +30,8 @@ namespace database{
 
       std::vector<Account*> accounts;
 
-      FILE* file = fopen("./database/accounts.txt", "r");
+      FILE* file = fopen("../database/accounts.txt", "r");
+      // FILE* file = fopen("../../database/accounts.txt", "r");
 
       Account account;
       while (fscanf(file, "%[^#]#%[^#]#%llu\n", account.username, account.password, &account.fund) != EOF)
@@ -54,7 +58,8 @@ namespace database{
 
       }
 
-      FILE* file = fopen("./database/accounts.txt", "w");
+      FILE* file = fopen("../database/accounts.txt", "r");
+      // FILE* file = fopen("../../database/accounts.txt", "r");
 
       for (const auto& account : accounts)
         fprintf(file, "%s#%s#%llu\n", account->username, account->password, account->fund);
@@ -83,7 +88,9 @@ namespace database{
 
     void create(Transaction newTransaction){
 
-      FILE* file = fopen("./database/transactions.txt", "a");
+      FILE* file = fopen("../database/transactions.txt", "r");
+      // FILE* file = fopen("../../database/transactions.txt", "r");
+
       fprintf(file, "%s#%s#%llu#%s#%s", newTransaction.sender, newTransaction.receiver, newTransaction.amount, newTransaction.hash, newTransaction.time);
       fclose(file);
 
@@ -93,7 +100,8 @@ namespace database{
 
       std::vector<Transaction*> transactions;
 
-      FILE* file = fopen("./database/transactions.txt", "r");
+      FILE* file = fopen("../database/transactions.txt", "r");
+      // FILE* file = fopen("../../database/transactions.txt", "r");
 
       Transaction transaction;
       while (fscanf(file, "%[^#]#%[^#]#%llu#%[^#]#%[^\n]\n", transaction.sender, transaction.receiver,

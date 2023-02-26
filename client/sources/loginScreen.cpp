@@ -1,6 +1,9 @@
 #include <stdio.h>
 #include <conio.h>
 
+
+#include <unistd.h>
+
 #include <vector>
 
 #ifndef LOGINSCREEN_CPP
@@ -100,7 +103,14 @@ namespace loginScreen{
     getUsername(attempt.username);
     getPassword(attempt.password);
 
+    std::vector<Account*> accounts = database::account::getAccounts();
+    for (const auto& account : accounts) printf("\n%s", account->username);
+
+    puts("DONE");
+    getchar();
+
     Account* user = database::account::findByUsername(attempt.username);
+
     if (!user) {
 
       utility::clear();

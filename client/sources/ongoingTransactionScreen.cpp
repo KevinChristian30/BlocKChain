@@ -68,6 +68,7 @@ namespace ongoingTransactionScreen{
       }
 
       printf("\n\n");
+      puts("Your Transactions");
       utility::putLine('=', 126);
       printf("| Sender                         | Receiver                       | Amount     | Hash       | Date                           |\n");
       
@@ -97,6 +98,7 @@ namespace ongoingTransactionScreen{
       }
 
       printf("\n\n");
+      puts("All Transaction");
       utility::putLine('=', 126);
       printf("| Sender                         | Receiver                       | Amount     | Hash       | Date                           |\n");
       
@@ -116,7 +118,38 @@ namespace ongoingTransactionScreen{
 
     void display(){
 
-      puts("Search Transactions");
+      char keyword[BUFFERSIZE];
+      printf("\n\nEnter Username: ");
+      scanf("%[^\n]", keyword);
+      getchar();
+
+      bool dataAvailable = false;
+
+      for (const auto& transaction : transactions)
+        if (strncmp(transaction->sender, keyword, BUFFERSIZE) == 0 ||
+            strncmp(transaction->receiver, keyword, BUFFERSIZE) == 0) dataAvailable = true;
+
+      if (!dataAvailable){
+
+        printf("\nNo Data!");
+        return;
+
+      }
+
+      printf("\n\n");
+      puts("Your Transactions");
+      utility::putLine('=', 126);
+      printf("| Sender                         | Receiver                       | Amount     | Hash       | Date                           |\n");
+      
+      utility::putLine('=', 126);
+
+      for (const auto& transaction : transactions)
+        if (strncmp(transaction->sender, keyword, BUFFERSIZE) == 0 ||
+            strncmp(transaction->receiver, keyword, BUFFERSIZE) == 0)
+              printf("| %-30s | %-30s | %-10llu | %-10s | %-30s |\n", transaction->sender,
+                transaction->receiver, transaction->amount, transaction->hash, transaction->time);
+
+      utility::putLine('=', 126);
         
     }
 
@@ -125,8 +158,12 @@ namespace ongoingTransactionScreen{
   bool displayTransactions(char input[]){
 
     if (strncmp(input, "1", BUFFERSIZE) == 0) myTransactions::display();
-    else if (strncmp(input, "3", BUFFERSIZE) == 0) searchTransactions::display();
-    else if (strncmp(input, "4", BUFFERSIZE) == 0) return false;
+    else if (strncmp(input, "3", BUFFERSIZE) == 0) {
+      
+      searchTransactions::display();
+      strncpy(input, "2", BUFFERSIZE);
+    
+    } else if (strncmp(input, "4", BUFFERSIZE) == 0) return false;
     else allTransactions::display();
     
     return true;
