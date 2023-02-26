@@ -11,26 +11,23 @@
 
 namespace changePasswordScreen{
 
-  const char LOGO[11 + 1][148 + 1] = {
+  const char LOGO[8 + 1][83] = {
 
-    "  /$$$$$$  /$$                                                     /$$$$$$$                                                                      /$$",
-    " /$$__  $$| $$                                                    | $$__  $$                                                                    | $$",
-    "| $$  \\__/| $$$$$$$   /$$$$$$  /$$$$$$$   /$$$$$$   /$$$$$$       | $$  \\ $$ /$$$$$$   /$$$$$$$ /$$$$$$$ /$$  /$$  /$$  /$$$$$$   /$$$$$$   /$$$$$$$",
-    "| $$      | $$__  $$ |____  $$| $$__  $$ /$$__  $$ /$$__  $$      | $$$$$$$/|____  $$ /$$_____//$$_____/| $$ | $$ | $$ /$$__  $$ /$$__  $$ /$$__  $$",
-    "| $$      | $$  \\ $$  /$$$$$$$| $$  \\ $$| $$  \\ $$| $$$$$$$$      | $$____/  /$$$$$$$|  $$$$$$|  $$$$$$ | $$ | $$ | $$| $$  \\ $$| $$  \\__/| $$  | $$",
-    "| $$    $$| $$  | $$ /$$__  $$| $$  | $$| $$  | $$| $$_____/      | $$      /$$__  $$ \\____  $$\\____  $$| $$ | $$ | $$| $$  | $$| $$      | $$  | $$",
-    "|  $$$$$$/| $$  | $$|  $$$$$$$| $$  | $$|  $$$$$$$|  $$$$$$$      | $$     |  $$$$$$$ /$$$$$$$//$$$$$$$/|  $$$$$/$$$$/|  $$$$$$/| $$      |  $$$$$$$",
-    " \\______/ |__/  |__/ \\_______/|__/  |__/ \\____  $$ \\_______/      |__/      \\_______/|_______/|_______/  \\_____/\\___/  \\______/ |__/       \\_______/",
-    "                                         /$$  \\ $$                                                                                                  ",
-    "                                        |  $$$$$$/                                                                                                  ",
-    "                                         \\______/                                                                                                   ",
+    " /$$$$$$$                                                                      /$$",
+    "| $$__  $$                                                                    | $$",
+    "| $$  \\ $$ /$$$$$$   /$$$$$$$ /$$$$$$$ /$$  /$$  /$$  /$$$$$$   /$$$$$$   /$$$$$$$",
+    "| $$$$$$$/|____  $$ /$$_____//$$_____/| $$ | $$ | $$ /$$__  $$ /$$__  $$ /$$__  $$",
+    "| $$____/  /$$$$$$$|  $$$$$$|  $$$$$$ | $$ | $$ | $$| $$  \\ $$| $$  \\__/| $$  | $$",
+    "| $$      /$$__  $$ \\____  $$\\____  $$| $$ | $$ | $$| $$  | $$| $$      | $$  | $$",
+    "| $$     |  $$$$$$$ /$$$$$$$//$$$$$$$/|  $$$$$/$$$$/|  $$$$$$/| $$      |  $$$$$$$",
+    "|__/      \\_______/|_______/|_______/  \\_____/\\___/  \\______/ |__/       \\_______/",
 
   };
 
   void displayLogo(){
 
     utility::setColor("FOREGROUND_BLUE");
-    for (short i = 0; i < 11; i++) printf("%s\n", LOGO[i]);
+    for (short i = 0; i < 8; i++) printf("%s\n", LOGO[i]);
     utility::setColor("FOREGROUND_WHITE");
 
   }
@@ -47,13 +44,13 @@ namespace changePasswordScreen{
       if (c == 8){
         
         if (currentIndex == 0) {
-          utility::moveCursor(offset + currentIndex, 12);
+          utility::moveCursor(offset + currentIndex, 9);
           printf(" ");
           continue;
         }
 
         storage[currentIndex - 1] = '\0';
-        utility::moveCursor(offset + currentIndex - 1, 12);
+        utility::moveCursor(offset + currentIndex - 1, 9);
         printf(" ");
         currentIndex--;
         
@@ -65,7 +62,7 @@ namespace changePasswordScreen{
       } else {
         
         storage[currentIndex] = c;
-        utility::moveCursor(offset + currentIndex, 12);
+        utility::moveCursor(offset + currentIndex, 9);
         printf("*");
         currentIndex++;
         
@@ -86,7 +83,10 @@ namespace changePasswordScreen{
    
     if (strncmp(currentUser->password, oldPassword, BUFFERSIZE) != 0){
 
-      printf("\nIncorrect Password! Press Enter to Continue");
+      utility::setColor("FOREGROUND_RED");
+      printf("\n\nIncorrect Password! Press Enter to Continue");
+      utility::setColor("FOREGROUND_WHITE");
+
       getchar();
       return;
 
@@ -103,7 +103,10 @@ namespace changePasswordScreen{
 
       if (!validator::minLength(newPassword1, 10)){
 
-        printf("\nPassword Must be At Least 10 Characters Long, Press Enter to Try Again");
+        utility::setColor("FOREGROUND_RED");
+        printf("\n\nPassword Must be At Least 10 Characters Long, Press Enter to Try Again");
+        utility::setColor("FOREGROUND_WHITE");
+
         getchar();
         continue;
 
@@ -112,7 +115,10 @@ namespace changePasswordScreen{
       // Validate Password Must be Alpha and Numeric
       if (!validator::isAlpha(newPassword1) || !validator::isNumeric(newPassword1)){
 
-        printf("\nPassword Must Contain Alpha and Numeric Characters, Press Enter to Try Again");
+        utility::setColor("FOREGROUND_RED");
+        printf("\n\nPassword Must Contain Alpha and Numeric Characters, Press Enter to Try Again");
+        utility::setColor("FOREGROUND_WHITE");
+
         getchar();
         continue;
 
@@ -129,7 +135,10 @@ namespace changePasswordScreen{
 
     if (strncmp(newPassword1, newPassword2, BUFFERSIZE) != 0){
 
-      printf("\nPasswords Doesn't Match! Press Enter to Continue");
+      utility::setColor("FOREGROUND_RED");
+      printf("\n\nPasswords Doesn't Match! Press Enter to Continue");
+      utility::setColor("FOREGROUND_WHITE");
+
       getchar();
       return;
 
@@ -139,9 +148,8 @@ namespace changePasswordScreen{
     strncpy(currentUser->password, newPassword1, BUFFERSIZE);
     database::account::update(currentUser);
 
-    puts("");
     utility::setColor("FOREGROUND_GREEN");
-    utility::animateString("Password Updated!", 20);
+    utility::animateString("\n\nPassword Updated!", 20);
     utility::setColor("FOREGROUND_WHITE");
 
     getchar();

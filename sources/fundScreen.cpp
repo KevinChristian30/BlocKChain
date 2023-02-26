@@ -4,8 +4,11 @@
 #define FUNDSCREEN_CPP
 
 #include "../models/Account.h"
+#include "../models/Transaction.h"
+
 #include "../headers/utility.h"
 #include "../headers/globals.h"
+#include "../headers/database.h"
 
 namespace fundScreen{
 
@@ -59,8 +62,34 @@ namespace fundScreen{
 
     void loop(){
 
-      utility::clear();
-      displayLogo();    
+      long long int buffer;
+      while (true){
+
+        utility::clear();
+        displayLogo();    
+
+        printf("\nEnter Deposit Amount: ");
+        scanf("%lld", &buffer);
+        getchar();
+
+        if (buffer <= 0){
+
+          utility::setColor("FOREGROUND_RED");
+          printf("\nAmount Must be Positive");
+          utility::setColor("FOREGROUND_WHITE");
+
+          getchar();
+
+        } else break;
+
+      }
+
+      Transaction* toCreate = createTransaction((char*) "DP", currentUser->username, (unsigned long long int) buffer);
+      database::transaction::create(*toCreate);
+
+      utility::setColor("FOREGROUND_GREEN");
+      utility::animateString("\nBlue Token(s) Added to Transactions!", 20);
+      utility::setColor("FOREGROUND_WHITE");
       getchar();
 
     }
@@ -71,8 +100,34 @@ namespace fundScreen{
 
     void loop(){
 
-      utility::clear();
-      displayLogo();
+      long long int buffer;
+      while (true){
+
+        utility::clear();
+        displayLogo();    
+
+        printf("\nEnter Withdraw Amount: ");
+        scanf("%lld", &buffer);
+        getchar();
+
+        if (buffer <= 0){
+
+          utility::setColor("FOREGROUND_RED");
+          printf("\nAmount Must be Positive");
+          utility::setColor("FOREGROUND_WHITE");
+
+          getchar();
+
+        } else break;
+
+      }
+
+      Transaction* toCreate = createTransaction((char*) "WD", currentUser->username, (unsigned long long int) buffer);
+      database::transaction::create(*toCreate);
+
+      utility::setColor("FOREGROUND_GREEN");
+      utility::animateString("\nBlue Token(s) Withdrawal Added to Transactions!", 20);
+      utility::setColor("FOREGROUND_WHITE");
       getchar();
 
     }
@@ -100,8 +155,6 @@ namespace fundScreen{
       display();
       getInput(input);
       if (!route(input)) break;
-
-      getchar();
 
     }
 

@@ -14,9 +14,28 @@ namespace registerScreen{
   #define BUFFERSIZE 255
 
   void displayHeader(){
-		
-		puts("Register");
-		puts("========");
+
+    const char LOGO[11 + 1][75 + 1] = {
+
+      " /$$$$$$$                      /$$             /$$                         ",  
+      "| $$__  $$                    |__/            | $$                        ",  
+      "| $$  \\ $$  /$$$$$$   /$$$$$$  /$$  /$$$$$$$ /$$$$$$    /$$$$$$   /$$$$$$ ",
+      "| $$$$$$$/ /$$__  $$ /$$__  $$| $$ /$$_____/|_  $$_/   /$$__  $$ /$$__  $$",
+      "| $$__  $$| $$$$$$$$| $$  \\ $$| $$|  $$$$$$   | $$    | $$$$$$$$| $$  \\__/",
+      "| $$  \\ $$| $$_____/| $$  | $$| $$ \\____  $$  | $$ /$$| $$_____/| $$      ",
+      "| $$  | $$|  $$$$$$$|  $$$$$$$| $$ /$$$$$$$/  |  $$$$/|  $$$$$$$| $$      ",
+      "|__/  |__/ \\_______/ \\____  $$|__/|_______/    \\___/   \\_______/|__/      ",
+      "                     /$$  \\ $$                                            ",
+      "                    |  $$$$$$/                                            ",
+      "                     \\______/                                             ",
+
+    };
+
+    utility::setColor("FOREGROUND_BLUE");
+    for (short i = 0; i < 11; i++) printf("%s\n", LOGO[i]);
+    utility::setColor("FOREGROUND_WHITE");
+
+    puts("");
 		
 	}
 
@@ -34,7 +53,10 @@ namespace registerScreen{
       // Validate Username's Length Must At Least be 8 Characters Long
       if (!validator::minLength(storage, 8)){
 
-        printf("Username Must be At Least 8 Characters Long, Press Enter to Try Again");
+        utility::setColor("FOREGROUND_RED");
+        printf("\nUsername Must be At Least 8 Characters Long, Press Enter to Try Again");
+        utility::setColor("FOREGROUND_WHITE");
+        
         getchar();
         continue;
 
@@ -43,7 +65,10 @@ namespace registerScreen{
       // Validate Username Musn't Contain Space
       if (validator::contains(storage, ' ')){
 
-        printf("Username Musn't Contain Space, Press Enter to Try Again");
+        utility::setColor("FOREGROUND_RED");
+        printf("\nUsername Musn't Contain Space, Press Enter to Try Again");
+        utility::setColor("FOREGROUND_WHITE");
+        
         getchar();
         continue;
 
@@ -57,7 +82,11 @@ namespace registerScreen{
         if (strncmp(storage, account->username, BUFFERSIZE) == 0){
 
           isUniqueUsername = false;
-          printf("Username Already Taken, Press Enter to Try Again");
+
+          utility::setColor("FOREGROUND_RED");
+          printf("\nUsername Already Taken, Press Enter to Try Again");
+          utility::setColor("FOREGROUND_WHITE");
+          
           getchar();
           break;
 
@@ -92,13 +121,13 @@ namespace registerScreen{
         if (c == 8){
           
           if (currentIndex == 0) {
-            utility::moveCursor(offset + currentIndex, 2);
+            utility::moveCursor(offset + currentIndex, 12);
             printf(" ");
             continue;
           }
 
           input[currentIndex - 1] = '\0';
-          utility::moveCursor(offset + currentIndex - 1, 2);
+          utility::moveCursor(offset + currentIndex - 1, 12);
           printf(" ");
           currentIndex--;
           
@@ -109,7 +138,7 @@ namespace registerScreen{
         } else {
           
           input[currentIndex] = c;
-          utility::moveCursor(offset + currentIndex, 2);
+          utility::moveCursor(offset + currentIndex, 12);
           printf("*");
           currentIndex++;
           
@@ -123,7 +152,10 @@ namespace registerScreen{
       // Validate Password's Length Must At Least be 10 Characters Long
       if (!validator::minLength(storage, 10)){
 
-        printf("Password Must be At Least 10 Characters Long, Press Enter to Try Again");
+        utility::setColor("FOREGROUND_RED");
+        printf("\nPassword Must be At Least 10 Characters Long, Press Enter to Try Again");
+        utility::setColor("FOREGROUND_WHITE");
+        
         getchar();
         continue;
 
@@ -132,7 +164,10 @@ namespace registerScreen{
       // Validate Password Must be Alpha and Numeric
       if (!validator::isAlpha(storage) || !validator::isNumeric(storage)){
 
-        printf("Password Must Contain Alpha and Numeric Characters, Press Enter to Try Again");
+        utility::setColor("FOREGROUND_RED");
+        printf("\nPassword Must Contain Alpha and Numeric Characters, Press Enter to Try Again");
+        utility::setColor("FOREGROUND_WHITE");
+        
         getchar();
         continue;
 
@@ -153,8 +188,9 @@ namespace registerScreen{
     newAccount.fund = 0;
     database::account::create(newAccount);
 
-    utility::clear();
-    puts("Account Created!, Press Enter to Continue");
+    utility::setColor("FOREGROUND_GREEN");
+    utility::animateString("\nAccount Created!, Press Enter to Continue", 20);
+    utility::setColor("FOREGROUND_WHITE");
     getchar();
 
   }

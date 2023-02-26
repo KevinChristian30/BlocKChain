@@ -242,27 +242,16 @@ namespace sendMoneyScreen{
       displayHeader();
 
       // Get Receiver
-      if (!getReceiver(newTransaction.receiver)){
-
-        puts("");
-        utility::setColor("FOREGROUND_RED");
-        utility::animateString("Transaction Cancelled! Press Enter to Continue", 20);
-        utility::setColor("FOREGROUND_WHITE");
-        
-        fflush(stdin);
-        getchar();
-        break;
-
-      }
+      if (!getReceiver(newTransaction.receiver)) break;
 
       // Get Amount
       while (true){
 
         getAmount(&newTransaction.amount, currentUser);
-        if (newTransaction.amount > currentUser->fund){
+        if (newTransaction.amount <= 0){
 
           utility::setColor("FOREGROUND_RED");
-          printf("\nYou don't Have Enough Money! Press Enter to Continue");
+          printf("\nAmount Must be Positive! Press Enter to Continue");
           utility::setColor("FOREGROUND_WHITE");
           getchar();
 
@@ -273,10 +262,6 @@ namespace sendMoneyScreen{
       // Create and Save Transaction to Transactions List
       Transaction* toCreate = createTransaction(newTransaction.sender, newTransaction.receiver, newTransaction.amount);
       
-      // Update Sender's Token Count
-      currentUser->fund -= toCreate->amount;
-      database::account::update(currentUser);
-      // Store new Transaction
       database::transaction::create(*toCreate);
       
       utility::setColor("FOREGROUND_GREEN");
