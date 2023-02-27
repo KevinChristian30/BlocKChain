@@ -32,4 +32,4 @@ Transaction.o: models/Transaction.cpp models/Transaction.h
 	$(CXX) -c models/Transaction.cpp
 
 clean:
-	del *.o BlocKChain.exe
+	del *.o BlueMiner.exe
