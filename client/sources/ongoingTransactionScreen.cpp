@@ -137,7 +137,7 @@ namespace ongoingTransactionScreen{
       }
 
       printf("\n\n");
-      puts("Your Transactions");
+      printf("%s's Transactions\n", keyword);
       utility::putLine('=', 126);
       printf("| Sender                         | Receiver                       | Amount     | Hash       | Date                           |\n");
       

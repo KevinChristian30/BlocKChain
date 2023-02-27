@@ -9,7 +9,6 @@
 
 #include "../headers/utility.h"
 #include "../headers/database.h"
-#include "../headers/mainMenuScreen.h"
 
 namespace loginScreen{
 
@@ -17,24 +16,19 @@ namespace loginScreen{
 
   void displayHeader(){
 		
-    const char LOGO[11 + 1][54 + 1] = {
+    const char LOGO[6 + 1][42 + 1] = {
 
-      " /$$                                 /$$$$$$          ",
-      "| $$                                |_  $$_/          ",
-      "| $$        /$$$$$$   /$$$$$$         | $$   /$$$$$$$ ",
-      "| $$       /$$__  $$ /$$__  $$        | $$  | $$__  $$",
-      "| $$      | $$  \\ $$| $$  \\ $$        | $$  | $$  \\ $$",
-      "| $$      | $$  | $$| $$  | $$        | $$  | $$  | $$",
-      "| $$$$$$$$|  $$$$$$/|  $$$$$$$       /$$$$$$| $$  | $$",
-      "|________/ \\______/  \\____  $$      |______/|__/  |__/",
-      "                     /$$  \\ $$                        ",
-      "                    |  $$$$$$/                        ",
-      "                     \\______/                         ",
+      ".____              ____      .___         ", 
+      "|    |     ____   / ___\\     |   |  ____  ", 
+      "|    |    /  _ \\ / /_/  >    |   | /    \\ ", 
+      "|    |___(  <_> )\\___  /     |   ||   |  \\", 
+      "|_______ \\\\____//_____/      |___||___|  /", 
+      "        \\/                             \\/ ", 
           
     };
 
     utility::setColor("FOREGROUND_BLUE");
-    for (short i = 0; i < 11; i++) printf("%s\n", LOGO[i]);
+    for (short i = 0; i < 6; i++) printf("%s\n", LOGO[i]);
     utility::setColor("FOREGROUND_WHITE");
 
     puts("");
@@ -50,7 +44,7 @@ namespace loginScreen{
     getchar();
 
   } 
-  
+
   void getPassword(char storage[]){
 
     utility::clear();
@@ -67,13 +61,13 @@ namespace loginScreen{
       if (c == 8){
         
         if (currentIndex == 0) {
-          utility::moveCursor(offset + currentIndex, 12);
+          utility::moveCursor(offset + currentIndex, 7);
           printf(" ");
           continue;
         }
 
         storage[currentIndex - 1] = '\0';
-        utility::moveCursor(offset + currentIndex - 1, 12);
+        utility::moveCursor(offset + currentIndex - 1, 7);
         printf(" ");
         currentIndex--;
         
@@ -85,7 +79,7 @@ namespace loginScreen{
       } else {
         
         storage[currentIndex] = c;
-        utility::moveCursor(offset + currentIndex, 12);
+        utility::moveCursor(offset + currentIndex, 7);
         printf("*");
         currentIndex++;
         
@@ -96,7 +90,7 @@ namespace loginScreen{
   }
 
   void loop(){
-
+    
     Account attempt;
     getUsername(attempt.username);
     getPassword(attempt.password);
@@ -132,7 +126,8 @@ namespace loginScreen{
 
     }
 
-    mainMenuScreen::loop(user);
+    puts("IN");
+    while (true) getchar();
 
   }
 
