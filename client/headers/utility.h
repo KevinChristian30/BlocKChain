@@ -1,6 +1,8 @@
 #ifndef UTILITY_H
 #define UTILITY_H
 
+#include "../models/Transaction.h"
+
 namespace utility{
 
   void clear();
@@ -12,6 +14,8 @@ namespace utility{
   void setColor(const char* color);
 
   void putLine(const char character, int numberOfTimes);
+
+  Transaction* parseTransaction(char input[]);
 
 }
 

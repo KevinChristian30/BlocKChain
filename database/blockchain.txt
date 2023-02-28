@@ -1,0 +1,66 @@
+0
+100
+DP#KevinChristian#1000#27100#Tue Feb 28 11:49:49 2023
+DP#KevinChristian#1000#27100#Tue Feb 28 11:51:00 2023
+DP#KevinChristian#1000#27100#Tue Feb 28 11:51:04 2023
+DP#KevinChristian#1000#27100#Tue Feb 28 11:51:09 2023
+DP#KevinChristian#1000#27100#Tue Feb 28 11:51:30 2023
+DP#KevinChristian#1000#27100#Tue Feb 28 11:51:33 2023
+DP#KevinChristian#1000#27100#Tue Feb 28 11:51:37 2023
+DP#KevinChristian#1000#27100#Tue Feb 28 11:51:42 2023
+
+27
+0
+KevinChristian#WD#2000#27210#Tue Feb 28 12:09:21 2023
+KevinChristian#JevonDanaristo#1000#38188#Tue Feb 28 12:09:49 2023
+KevinChristian#MarioIskandar#1000#36393#Tue Feb 28 12:10:01 2023
+KevinChristian#HansIndrawan#500#35130#Tue Feb 28 12:10:10 2023
+KevinChristian#GloryDaniella#100#36335#Tue Feb 28 12:10:42 2023
+KevinChristian#MarvinLuckianto#100#39724#Tue Feb 28 12:10:57 2023
+KevinChristian#LionelRiyadi#300#35032#Tue Feb 28 12:11:08 2023
+DP#KevinChristian#2000#27215#Tue Feb 28 12:11:25 2023
+
+75
+27
+KevinChristian#GloryDaniella#100#36332#Tue Feb 28 12:10:42 2023
+KevinChristian#MarvinLuckianto#100#39721#Tue Feb 28 12:10:57 2023
+KevinChristian#LionelRiyadi#300#35029#Tue Feb 28 12:11:08 2023
+DP#KevinChristian#2000#27212#Tue Feb 28 12:11:25 2023
+DP#KevinChristian#1000#27212#Tue Feb 28 14:13:16 2023
+KevinChristian#GloryDaniella#5000#36332#Tue Feb 28 14:13:30 2023
+KevinChristian#JoshuaGolden#1000#34996#Tue Feb 28 14:13:39 2023
+LionelRiyadi#MarioIskandar#500#33360#Tue Feb 28 14:14:23 2023
+
+0
+75
+DP#KevinChristian#1000#27100#Tue Feb 28 11:49:49 2023
+DP#KevinChristian#1000#27100#Tue Feb 28 11:51:00 2023
+DP#KevinChristian#1000#27100#Tue Feb 28 11:51:04 2023
+DP#KevinChristian#1000#27100#Tue Feb 28 11:51:09 2023
+DP#KevinChristian#1000#27100#Tue Feb 28 11:51:30 2023
+DP#KevinChristian#1000#27100#Tue Feb 28 11:51:33 2023
+DP#KevinChristian#1000#27100#Tue Feb 28 11:51:37 2023
+DP#KevinChristian#1000#27100#Tue Feb 28 11:51:42 2023
+
+27
+0
+KevinChristian#WD#2000#27210#Tue Feb 28 12:09:21 2023
+KevinChristian#JevonDanaristo#1000#38188#Tue Feb 28 12:09:49 2023
+KevinChristian#MarioIskandar#1000#36393#Tue Feb 28 12:10:01 2023
+KevinChristian#HansIndrawan#500#35130#Tue Feb 28 12:10:10 2023
+KevinChristian#GloryDaniella#100#36335#Tue Feb 28 12:10:42 2023
+KevinChristian#MarvinLuckianto#100#39724#Tue Feb 28 12:10:57 2023
+KevinChristian#LionelRiyadi#300#35032#Tue Feb 28 12:11:08 2023
+DP#KevinChristian#2000#27215#Tue Feb 28 12:11:25 2023
+
+75
+27
+KevinChristian#GloryDaniella#100#36332#Tue Feb 28 12:10:42 2023
+KevinChristian#MarvinLuckianto#100#39721#Tue Feb 28 12:10:57 2023
+KevinChristian#LionelRiyadi#300#35029#Tue Feb 28 12:11:08 2023
+DP#KevinChristian#2000#27212#Tue Feb 28 12:11:25 2023
+DP#KevinChristian#1000#27212#Tue Feb 28 14:13:16 2023
+KevinChristian#GloryDaniella#5000#36332#Tue Feb 28 14:13:30 2023
+KevinChristian#JoshuaGolden#1000#34996#Tue Feb 28 14:13:39 2023
+LionelRiyadi#MarioIskandar#500#33360#Tue Feb 28 14:14:23 2023
+

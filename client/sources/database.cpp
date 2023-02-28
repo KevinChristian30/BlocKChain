@@ -9,6 +9,9 @@
 
 #include "../models/Account.h"
 #include "../models/Transaction.h"
+#include "../models/Block.h"
+
+#include "../headers/utility.h"
 
 namespace database{
 
@@ -58,8 +61,8 @@ namespace database{
 
       }
 
-      FILE* file = fopen("../database/accounts.txt", "r");
-      // FILE* file = fopen("../../database/accounts.txt", "r");
+      FILE* file = fopen("../database/accounts.txt", "w");
+      // FILE* file = fopen("../../database/accounts.txt", "w");
 
       for (const auto& account : accounts)
         fprintf(file, "%s#%s#%llu\n", account->username, account->password, account->fund);
@@ -118,6 +121,64 @@ namespace database{
       fclose(file);
 
       return transactions;
+
+    }
+
+  }
+
+  namespace blockchain{
+
+    void create(Block newBlock){
+
+      FILE* file = fopen("../database/blockchain.txt", "a");
+      // FILE* file = fopen("../../database/blockchain.txt", "a");
+
+      fprintf(file, "%s\n", newBlock.hash);
+      fprintf(file, "%s\n", newBlock.previousHash);
+      
+      for (short i = 0; i < 8; i++){
+
+        fprintf(file, "%s#%s#%llu#%s#%s\n", newBlock.transactions[i]->sender, newBlock.transactions[i]->receiver, newBlock.transactions[i]->amount, newBlock.transactions[i]->hash, newBlock.transactions[i]->time);
+
+      }
+
+      fprintf(file, "\n");
+
+      fclose(file);
+
+    }
+
+    std::vector<Block*> getBlockchain(){
+
+      FILE* file = fopen("../database/blockchain.txt", "r");
+
+      std::vector<Block*> blockchain;
+
+      Block* buffer;
+      char hashBuffer[BUFFERSIZE], previousHashBuffer[BUFFERSIZE];
+      while (fscanf(file, "%[^\n]\n%[^\n]\n", hashBuffer, previousHashBuffer) != EOF){
+
+        buffer = (Block*) malloc(sizeof(Block));
+        strncpy(buffer->hash, hashBuffer, BUFFERSIZE);
+        strncpy(buffer->previousHash, previousHashBuffer, BUFFERSIZE);
+
+        for (short i = 0; i < 8; i++){
+
+          char temp[BUFFERSIZE];
+          fscanf(file, "%[^\n]\n", temp);
+          buffer->transactions[i] = utility::parseTransaction(temp);
+          
+        }
+
+        fscanf(file, "\n");
+
+        blockchain.push_back(buffer);
+
+      }
+      
+      fclose(file);
+
+      return blockchain;
 
     }
 

@@ -5,6 +5,7 @@
 
 #include "../models/Account.h"
 #include "../models/Transaction.h"
+#include "../models/Block.h"
 
 namespace database{
 
@@ -25,6 +26,16 @@ namespace database{
     void create(Transaction newTransaction);
 
     std::vector<Transaction*> getTransactions();
+
+    void deleteTransaction(Transaction toDelete);
+
+  }
+
+  namespace blockchain{
+
+    void create(Block newBlock);
+
+    std::vector<Block*> getBlockchain();
 
   }
 

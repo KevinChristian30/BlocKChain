@@ -118,6 +118,14 @@ namespace fundScreen{
 
           getchar();
 
+        } else if (buffer > currentUser->fund){
+
+          utility::setColor("FOREGROUND_RED");
+          printf("\nYou don't Have Enough Money");
+          utility::setColor("FOREGROUND_WHITE");
+
+          getchar();
+
         } else break;
 
       }
@@ -125,6 +133,9 @@ namespace fundScreen{
       Transaction* toCreate = createTransaction(currentUser->username,
       (char*) "WD", (unsigned long long int) buffer);
       database::transaction::create(*toCreate);
+
+      currentUser->fund -= buffer;
+      database::account::update(currentUser);
 
       utility::setColor("FOREGROUND_GREEN");
       utility::animateString("\nBlue Token(s) Withdrawal Added to Transactions!", 20);

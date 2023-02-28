@@ -253,11 +253,23 @@ namespace sendMoneyScreen{
           utility::setColor("FOREGROUND_RED");
           printf("\nAmount Must be Positive! Press Enter to Continue");
           utility::setColor("FOREGROUND_WHITE");
+
+          getchar();
+
+        } else if (newTransaction.amount > currentUser->fund){
+
+          utility::setColor("FOREGROUND_RED");
+          printf("\nYou don't Have Enough Money! Press Enter to Continue");
+          utility::setColor("FOREGROUND_WHITE");
+          
           getchar();
 
         } else break;
 
       }
+
+      currentUser->fund -= newTransaction.amount;
+      database::account::update(currentUser);
 
       // Create and Save Transaction to Transactions List
       Transaction* toCreate = createTransaction(newTransaction.sender, newTransaction.receiver, newTransaction.amount);

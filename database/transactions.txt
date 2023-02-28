@@ -1,10 +1,2 @@
-KevinChristian#JosafatAnderson#200#39641#Sun Feb 26 18:20:08 2023
-KevinChristian#GloryDaniella#500#36309#Sun Feb 26 18:20:23 2023
-DP#KevinChristian#500#27245#Sun Feb 26 18:20:35 2023
-KevinChristian#WD#200#27163#Sun Feb 26 18:20:40 2023
-LionelRiyadi#KevinChristian#100#35096#Sun Feb 26 19:03:08 2023
-KevinChristian#JaysieLestari#400#36727#Sun Feb 26 19:48:25 2023
-KevinChristian#GloryDaniella#400#36347#Sun Feb 26 20:53:34 2023
-TestingNAR#ZenliHuangtara#80#31828#Mon Feb 27 07:03:06 2023
-DP#TestingNAR#1000#21206#Mon Feb 27 07:03:18 2023
-TestingNAR#WD#100#21143#Mon Feb 27 07:03:24 2023
+LionelRiyadi#JevonDanaristo#100#35155#Tue Feb 28 14:14:33 2023
+DP#LionelRiyadi#400#24182#Tue Feb 28 14:15:04 2023

@@ -1,8 +1,8 @@
 
 CXX=g++
 
-output: main.o globals.o database.o utility.o indexScreen.o loginScreen.o exitScreen.o Account.o Transaction.o
-	$(CXX) main.o globals.o database.o utility.o indexScreen.o loginScreen.o exitScreen.o Account.o Transaction.o -o BlueMiner
+output: main.o globals.o database.o utility.o indexScreen.o loginScreen.o exitScreen.o miningScreen.o Account.o Transaction.o Block.o
+	$(CXX) main.o globals.o database.o utility.o indexScreen.o loginScreen.o exitScreen.o miningScreen.o Account.o Transaction.o Block.o -o BlueMiner
 
 main.o: main.cpp
 	$(CXX) -c main.cpp
@@ -25,11 +25,17 @@ loginScreen.o: sources/loginScreen.cpp headers/loginScreen.h
 exitScreen.o: sources/exitScreen.cpp headers/exitScreen.h
 	$(CXX) -c sources/exitScreen.cpp
 
+miningScreen.o: sources/miningScreen.cpp headers/miningScreen.h
+	$(CXX) -c sources/miningScreen.cpp
+
 Account.o: models/Account.cpp models/Account.h
 	$(CXX) -c models/Account.cpp
 
 Transaction.o: models/Transaction.cpp models/Transaction.h
 	$(CXX) -c models/Transaction.cpp
+
+Block.o: models/Block.cpp models/Block.h
+	$(CXX) -c models/Block.cpp
 
 clean:
 	del *.o BlueMiner.exe

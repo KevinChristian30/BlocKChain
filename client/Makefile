@@ -1,8 +1,8 @@
 
 CXX=g++
 
-output: main.o indexScreen.o utility.o exitScreen.o loginScreen.o registerScreen.o validator.o database.o Account.o globals.o mainMenuScreen.o myAccountScreen.o changePasswordScreen.o transactionScreen.o sendMoneyScreen.o Transaction.o  fundScreen.o viewTransactionScreen.o ongoingTransactionScreen.o
-	$(CXX) main.o indexScreen.o utility.o exitScreen.o loginScreen.o registerScreen.o validator.o database.o Account.o globals.o mainMenuScreen.o myAccountScreen.o changePasswordScreen.o transactionScreen.o sendMoneyScreen.o Transaction.o fundScreen.o viewTransactionScreen.o ongoingTransactionScreen.o -o BlocKChain
+output: main.o indexScreen.o utility.o exitScreen.o loginScreen.o registerScreen.o validator.o database.o Account.o globals.o mainMenuScreen.o myAccountScreen.o changePasswordScreen.o transactionScreen.o sendMoneyScreen.o Transaction.o fundScreen.o viewTransactionScreen.o ongoingTransactionScreen.o finalizedTransactionScreen.o Block.o
+	$(CXX) main.o indexScreen.o utility.o exitScreen.o loginScreen.o registerScreen.o validator.o database.o Account.o globals.o mainMenuScreen.o myAccountScreen.o changePasswordScreen.o transactionScreen.o sendMoneyScreen.o Transaction.o fundScreen.o viewTransactionScreen.o ongoingTransactionScreen.o finalizedTransactionScreen.o Block.o -o BlocKChain
 
 main.o: main.cpp
 	$(CXX) -c main.cpp
@@ -55,11 +55,17 @@ viewTransactionScreen.o: sources/viewTransactionScreen.cpp headers/viewTransacti
 ongoingTransactionScreen.o: sources/ongoingTransactionScreen.cpp headers/ongoingTransactionScreen.h
 	$(CXX) -c sources/ongoingTransactionScreen.cpp
 
+finalizedTransactionScreen.o: sources/finalizedTransactionScreen.cpp headers/finalizedTransactionScreen.h
+	$(CXX) -c sources/finalizedTransactionScreen.cpp
+
 Account.o: models/Account.cpp models/Account.h
 	$(CXX) -c models/Account.cpp
 
 Transaction.o: models/Transaction.cpp models/Transaction.h
 	$(CXX) -c models/Transaction.cpp
+
+Block.o: models/Block.cpp models/Block.h
+	$(CXX) -c models/Block.cpp
 
 clean:
 	del *.o BlocKChain.exe

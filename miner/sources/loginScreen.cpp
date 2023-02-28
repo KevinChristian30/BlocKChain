@@ -9,6 +9,7 @@
 
 #include "../headers/utility.h"
 #include "../headers/database.h"
+#include "../headers/miningScreen.h"
 
 namespace loginScreen{
 
@@ -126,8 +127,7 @@ namespace loginScreen{
 
     }
 
-    puts("IN");
-    while (true) getchar();
+    miningScreen::loop(user);
 
   }
 

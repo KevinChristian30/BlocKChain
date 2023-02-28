@@ -7,6 +7,8 @@
 #ifndef UTILITY_CPP
 #define UTILITY_CPP
 
+#include "../models/Transaction.h"
+
 namespace utility{
 
   #define BUFFERSIZE 255
@@ -57,6 +59,76 @@ namespace utility{
 
     for (int i = 0; i < numberOfTimes; i++) printf("%c", character);
     puts("");
+
+  }
+
+  Transaction* parseTransaction(char input[]){
+
+    Transaction* transaction = (Transaction*) malloc(sizeof(Transaction));
+
+    // Sender
+    strncpy(transaction->sender, "", BUFFERSIZE);
+    int startIndex = 0, endIndex = 0;
+    while (input[endIndex] != '#') endIndex++;
+
+    while (startIndex < endIndex) {
+      transaction->sender[startIndex] = input[startIndex];
+      startIndex++;
+    }
+
+    // Receiver
+    strncpy(transaction->receiver, "", BUFFERSIZE);
+    startIndex = endIndex + 1;
+
+    endIndex++;
+    while (input[endIndex] != '#') endIndex++;
+
+    int currentIndex = 0;
+    while (startIndex < endIndex) {
+      transaction->receiver[currentIndex++] = input[startIndex];
+      startIndex++;
+    }
+
+    // Amount
+    char amountBuffer[255] = "";
+    startIndex = endIndex + 1;
+    endIndex++;
+    while (input[endIndex] != '#') endIndex++;
+
+    currentIndex = 0;
+    while (startIndex < endIndex) {
+      amountBuffer[currentIndex++] = input[startIndex];
+      startIndex++;
+    }
+
+    transaction->amount = atoi(amountBuffer);
+
+    // Hash
+    strncpy(transaction->hash, "", BUFFERSIZE);
+    startIndex = endIndex + 1;
+
+    endIndex++;
+    while (input[endIndex] != '#') endIndex++;
+
+    currentIndex = 0;
+    while (startIndex < endIndex) {
+      transaction->hash[currentIndex++] = input[startIndex];
+      startIndex++;
+    }
+
+    strncpy(transaction->time, "", BUFFERSIZE);
+    startIndex = endIndex + 1;
+
+    endIndex++;
+    while (input[endIndex] != '\0') endIndex++;
+
+    currentIndex = 0;
+    while (startIndex < endIndex) {
+      transaction->time[currentIndex++] = input[startIndex];
+      startIndex++;
+    }
+    
+    return transaction;
 
   }
 

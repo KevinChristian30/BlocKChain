@@ -8,6 +8,7 @@
 #include "../headers/utility.h"
 #include "../headers/globals.h"
 #include "../headers/ongoingTransactionScreen.h"
+#include "../headers/finalizedTransactionScreen.h"
 
 namespace viewTransactionScreen{
 
@@ -55,7 +56,7 @@ namespace viewTransactionScreen{
   bool route(char input[]){
 
     if (strncmp(input, "1", BUFFERSIZE) == 0) ongoingTransactionScreen::loop(currentUser);
-    else if (strncmp(input, "2", BUFFERSIZE) == 0) puts("Finalized Transactions");
+    else if (strncmp(input, "2", BUFFERSIZE) == 0) finalizedTransactionScreen::loop(currentUser);
     else if (strncmp(input, "3", BUFFERSIZE) == 0) return false; 
 
     return true;
