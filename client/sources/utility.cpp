@@ -45,14 +45,18 @@ namespace utility{
   void setColor(const char* color){
 
     if (strcmp(color, "FOREGROUND_RED") == 0) 
-      SetConsoleTextAttribute(OUTPUTHANDLE, FOREGROUND_RED);
+      // SetConsoleTextAttribute(OUTPUTHANDLE, FOREGROUND_RED);
+      SetConsoleTextAttribute(OUTPUTHANDLE, 0x74);
     else if (strcmp(color, "FOREGROUND_GREEN") == 0)
-      SetConsoleTextAttribute(OUTPUTHANDLE, FOREGROUND_GREEN);
+      // SetConsoleTextAttribute(OUTPUTHANDLE, FOREGROUND_GREEN);
+      SetConsoleTextAttribute(OUTPUTHANDLE, 0x72);
     else if (strcmp(color, "FOREGROUND_BLUE") == 0)
-      SetConsoleTextAttribute(OUTPUTHANDLE, FOREGROUND_LIGHTBLUE);
+      // SetConsoleTextAttribute(OUTPUTHANDLE, FOREGROUND_LIGHTBLUE);
+      SetConsoleTextAttribute(OUTPUTHANDLE, 0x79);
     else if (strcmp(color, "FOREGROUND_WHITE") == 0)
-      SetConsoleTextAttribute(OUTPUTHANDLE, FOREGROUND_WHITE);
-
+      SetConsoleTextAttribute(OUTPUTHANDLE, 0x70);
+    else if (strcmp(color, "BACKGROUND_WHITE") == 0)
+      SetConsoleTextAttribute(OUTPUTHANDLE, 0x70);
   }
 
   void putLine(const char character, int numberOfTimes){

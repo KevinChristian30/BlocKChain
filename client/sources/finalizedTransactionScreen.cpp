@@ -64,7 +64,16 @@ namespace finalizedTransactionScreen{
     void displayInOrder(Node* node){
 
       if (node->left) displayInOrder(node->left);
+
+      utility::setColor("FOREGROUND_BLUE");
       printf("Hash: %s\n", node->block->hash);
+      utility::setColor("FOREGROUND_GREEN");
+      printf("Total Transaction Amount: %llu\n", getAmount(node->block));
+      utility::setColor("FOREGROUND_WHITE");
+
+      utility::putLine('=', 111);
+      puts("| Sender                    | Receiver                  | Amount     | Hash       | Time                      |");
+      utility::putLine('=', 111);
       for (int i = 0; i < 8; i++){
 
         printf("| %-25s | %-25s | %-10llu | %-10s | %-25s |\n", node->block->transactions[i]->sender, 
@@ -74,6 +83,9 @@ namespace finalizedTransactionScreen{
         node->block->transactions[i]->time);
 
       }
+      utility::putLine('=', 111);
+      puts("");
+
       if (node->right) displayInOrder(node->right);
 
     }
@@ -90,6 +102,8 @@ namespace finalizedTransactionScreen{
       }
 
       displayInOrder(node);
+
+      puts("Press Enter to Continue");
 
       return atoi(node->block->previousHash);
 

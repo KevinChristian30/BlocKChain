@@ -51,10 +51,11 @@ namespace registerScreen{
       getchar();
 
       // Validate Username's Length Must At Least be 8 Characters Long
-      if (!validator::minLength(storage, 8)){
+      size_t len = strlen(storage);
+      if (!(len >= 8 && len <= 25)){
 
         utility::setColor("FOREGROUND_RED");
-        printf("\nUsername Must be At Least 8 Characters Long, Press Enter to Try Again");
+        printf("\nUsername's Length Must be Between 8 and 25 Characters Long! Press Enter to Try Again");
         utility::setColor("FOREGROUND_WHITE");
         
         getchar();

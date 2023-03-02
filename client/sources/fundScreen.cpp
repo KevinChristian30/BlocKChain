@@ -46,7 +46,7 @@ namespace fundScreen{
     
     puts("1. Deposit");
     puts("2. Withdraw");
-    puts("3. Exit");
+    puts("3. Back");
     printf(">> ");
 
   }

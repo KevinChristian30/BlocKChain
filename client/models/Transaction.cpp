@@ -26,7 +26,6 @@ void hashTransaction(char storage[], char sender[], char receiver[], unsigned lo
   for (size_t i = 1; i <= senderLength; i++) result += i * sender[i - 1];
   for (size_t i = 1; i <= receiverLength; i++) result += i * receiver[i - 1];
   for (size_t i = 1; i <= timeLength; i++) result += i * time[i - 1];
-  for (unsigned long long int i = 0; i < amount; i++) result << 2;
 
   itoa(result, storage, 10);
 
