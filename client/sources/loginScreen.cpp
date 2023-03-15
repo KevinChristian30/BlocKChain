@@ -45,7 +45,7 @@ namespace loginScreen{
 
     utility::clear();
     displayHeader();
-    printf("Enter Username >> ");
+    printf("Enter Username [0 to go Back] >> ");
     scanf("%[^\n]", storage);
     getchar();
 
@@ -55,10 +55,10 @@ namespace loginScreen{
 
     utility::clear();
     displayHeader();
-    printf("Enter Password >> ");
+    printf("Enter Password [0 to go Back] >> ");
 
     int currentIndex = 0;
-    const short offset = 18;
+    const short offset = 33;
     
     while (true){
       
@@ -99,7 +99,10 @@ namespace loginScreen{
 
     Account attempt;
     getUsername(attempt.username);
+    if (strncmp(attempt.username, "0", BUFFERSIZE) == 0) return;
+
     getPassword(attempt.password);
+    if (strncmp(attempt.password, "0", BUFFERSIZE) == 0) return;
 
     std::vector<Account*> accounts = database::account::getAccounts();
     Account* user = database::account::findByUsername(attempt.username);

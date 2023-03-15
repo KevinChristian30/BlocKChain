@@ -35,7 +35,7 @@ namespace changePasswordScreen{
   void getPassword(char storage[]){
 
     int currentIndex = 0;
-    const short offset = 25;
+    const short offset = 39;
     
     while (true){
       
@@ -76,10 +76,12 @@ namespace changePasswordScreen{
 
     utility::clear();
     displayLogo();
-    printf("\nEnter your Old Password: ");
+    printf("\nEnter your Old Password [0 to Cancel]: ");
 
     char oldPassword[BUFFERSIZE];
     getPassword(oldPassword);
+
+    if (strncmp(oldPassword, "0", BUFFERSIZE) == 0) return;
    
     if (strncmp(currentUser->password, oldPassword, BUFFERSIZE) != 0){
 
@@ -98,8 +100,10 @@ namespace changePasswordScreen{
 
       utility::clear();
       displayLogo();
-      printf("\nEnter your New Password: ");
+      printf("\nEnter your New Password [0 to Cancel]: ");
       getPassword(newPassword1);
+
+      if (strncmp(newPassword1, "0", BUFFERSIZE) == 0) return;
 
       if (!validator::minLength(newPassword1, 10)){
 
@@ -130,8 +134,10 @@ namespace changePasswordScreen{
     
     utility::clear();
     displayLogo();
-    printf("\nRepeat the New Password: ");
+    printf("\nRepeat the New Password [0 to Cancel]: ");
     getPassword(newPassword2);
+
+    if (strncmp(newPassword2, "0", BUFFERSIZE) == 0) return;
 
     if (strncmp(newPassword1, newPassword2, BUFFERSIZE) != 0){
 

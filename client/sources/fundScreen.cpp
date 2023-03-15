@@ -62,17 +62,40 @@ namespace fundScreen{
 
     void loop(){
 
-      long long int buffer;
+      char buffer[BUFFERSIZE];
+      unsigned long long int amount;
       while (true){
 
         utility::clear();
         displayLogo();    
 
-        printf("\nEnter Deposit Amount: ");
-        scanf("%lld", &buffer);
+        printf("\nEnter Deposit Amount [0 to Cancel]: ");
+        scanf("%[^\n]", buffer);
         getchar();
 
-        if (buffer <= 0){
+        // Validasi Numeric Only
+        size_t length = strlen(buffer);
+        bool isNumericOnly = true;
+        for (size_t i = 0; i < length; i++) {
+
+          if (buffer[i] < '0' || buffer[i] > '9') {
+
+            utility::setColor("FOREGROUND_RED");
+            printf("\nYou Must Input a Positive Number");
+            utility::setColor("FOREGROUND_WHITE");
+            getchar();
+
+            isNumericOnly = false;
+            break;
+
+          }
+
+        }
+
+        if (!isNumericOnly) continue;
+
+        amount = atoi(buffer);
+        if (amount < 0){
 
           utility::setColor("FOREGROUND_RED");
           printf("\nAmount Must be Positive");
@@ -80,11 +103,20 @@ namespace fundScreen{
 
           getchar();
 
+        } else if (amount == 0) {
+
+          utility::setColor("FOREGROUND_BLUE");
+          utility::animateString("\nDeposit Cancelled", 20);
+          utility::setColor("FOREGROUND_WHITE");
+
+          getchar();
+          return;
+
         } else break;
 
       }
 
-      Transaction* toCreate = createTransaction((char*) "DP", currentUser->username, (unsigned long long int) buffer);
+      Transaction* toCreate = createTransaction((char*) "DP", currentUser->username, (unsigned long long int) amount);
       database::transaction::create(*toCreate);
 
       utility::setColor("FOREGROUND_GREEN");
@@ -100,17 +132,41 @@ namespace fundScreen{
 
     void loop(){
 
-      long long int buffer;
+      char buffer[BUFFERSIZE];
+      unsigned long long int amount;
       while (true){
 
         utility::clear();
         displayLogo();    
 
-        printf("\nEnter Withdraw Amount: ");
-        scanf("%lld", &buffer);
+        printf("\nEnter Withdraw Amount [0 to cancel]: ");
+        scanf("%[^\n]", &buffer);
         getchar();
 
-        if (buffer <= 0){
+        // Validasi Numeric Only
+        size_t length = strlen(buffer);
+        bool isNumericOnly = true;
+        for (size_t i = 0; i < length; i++) {
+
+          if (buffer[i] < '0' || buffer[i] > '9') {
+
+            utility::setColor("FOREGROUND_RED");
+            printf("\nYou Must Input a Positive Number");
+            utility::setColor("FOREGROUND_WHITE");
+            getchar();
+
+            isNumericOnly = false;
+            break;
+
+          }
+
+        }
+
+        if (!isNumericOnly) continue;
+
+        amount = atoi(buffer);
+
+        if (amount < 0){
 
           utility::setColor("FOREGROUND_RED");
           printf("\nAmount Must be Positive");
@@ -118,7 +174,16 @@ namespace fundScreen{
 
           getchar();
 
-        } else if (buffer > currentUser->fund){
+        } else if (amount == 0) {
+
+          utility::setColor("FOREGROUND_BLUE");
+          utility::animateString("\nWithdrawal Cancelled", 20);
+          utility::setColor("FOREGROUND_WHITE");
+
+          getchar();
+          return;
+
+        } else if (amount > currentUser->fund){
 
           utility::setColor("FOREGROUND_RED");
           printf("\nYou don't Have Enough Money");
@@ -131,10 +196,10 @@ namespace fundScreen{
       }
 
       Transaction* toCreate = createTransaction(currentUser->username,
-      (char*) "WD", (unsigned long long int) buffer);
+      (char*) "WD", (unsigned long long int) amount);
       database::transaction::create(*toCreate);
 
-      currentUser->fund -= buffer;
+      currentUser->fund -= amount;
       database::account::update(currentUser);
 
       utility::setColor("FOREGROUND_GREEN");
@@ -158,7 +223,7 @@ namespace fundScreen{
 
   void loop(Account* user){
 
-    currentUser = user;
+    currentUser = database::account::findByUsername(user->username);
 
     char input[BUFFERSIZE];
     while (true){

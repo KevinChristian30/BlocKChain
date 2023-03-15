@@ -46,9 +46,11 @@ namespace registerScreen{
       utility::clear();
       displayHeader();
 
-      printf("Enter Username >> ");
+      printf("Enter Username [0 to Cancel] >> ");
       scanf("%[^\n]", storage);
       getchar();
+
+      if (strncmp(storage, "0", BUFFERSIZE) == 0) return;
 
       // Validate Username's Length Must At Least be 8 Characters Long
       size_t len = strlen(storage);
@@ -105,12 +107,12 @@ namespace registerScreen{
 
   void getPassword(char storage[]){
 
-    const short offset = 18;
+    const short offset = 33;
     while (true){
 
       utility::clear();
       displayHeader();
-      printf("Enter Password >> ");
+      printf("Enter Password [0 to Cancel] >> ");
 
       char input[BUFFERSIZE] = "";
       int currentIndex = 0;
@@ -150,6 +152,8 @@ namespace registerScreen{
       puts("");
       strncpy(storage, input, BUFFERSIZE);
 
+      if (strncmp(storage, "0", BUFFERSIZE) == 0) return;
+
       // Validate Password's Length Must At Least be 10 Characters Long
       if (!validator::minLength(storage, 10)){
 
@@ -185,7 +189,11 @@ namespace registerScreen{
     Account newAccount;
 
     getUsername(newAccount.username);
+    if (strncmp(newAccount.username, "0", BUFFERSIZE) == 0) return;
+
     getPassword(newAccount.password);
+    if (strncmp(newAccount.password, "0", BUFFERSIZE) == 0) return;
+
     newAccount.fund = 0;
     database::account::create(newAccount);
 

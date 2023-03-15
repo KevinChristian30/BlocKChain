@@ -143,7 +143,7 @@ namespace finalizedTransactionScreen{
 
   void loop(Account* user){
 
-    currentUser = user;
+    currentUser = database::account::findByUsername(user->username);
     hashTable::initiateTable();
     std::vector<Block*> blockchain = database::blockchain::getBlockchain();
 

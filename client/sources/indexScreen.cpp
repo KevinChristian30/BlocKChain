@@ -91,6 +91,8 @@ namespace indexScreen{
 
     }
 
+    while (true) getchar();
+ 
   }
 
 }
