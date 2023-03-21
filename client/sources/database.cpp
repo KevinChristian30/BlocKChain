@@ -110,7 +110,11 @@ namespace database{
       while (fscanf(file, "%[^#]#%[^#]#%llu#%[^#]#%[^\n]\n", transaction.sender, transaction.receiver,
        &transaction.amount, transaction.hash, transaction.time) != EOF){
         
-        Transaction* newTransaction = createTransaction(transaction.sender, transaction.receiver, transaction.amount);
+        Transaction* newTransaction = (Transaction*) malloc(sizeof(Transaction));
+        strncpy(newTransaction->sender, transaction.sender, BUFFERSIZE);
+        strncpy(newTransaction->receiver, transaction.receiver, BUFFERSIZE);
+        newTransaction->amount = transaction.amount;
+        strncpy(newTransaction->hash, transaction.hash, BUFFERSIZE);
         strncpy(newTransaction->time, transaction.time, BUFFERSIZE);
 
         transactions.push_back(newTransaction);

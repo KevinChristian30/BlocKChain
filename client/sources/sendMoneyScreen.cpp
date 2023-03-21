@@ -187,11 +187,13 @@ namespace sendMoneyScreen{
         displayHeader();
         circularDoublyLinkedList::display(pageNumber, current);
         
-        printf("\nEnter Username: ");
+        printf("\nEnter Username [0 to Cancel]: ");
         
         // Scan For Username
         scanf("%[^\n]", storage);
         getchar();
+
+        if (strncmp(storage, "0", BUFFERSIZE) == 0) continue;
 
         // Validate Must Exist
         Account* receiverAccount = database::account::findByUsername(storage);
@@ -224,7 +226,7 @@ namespace sendMoneyScreen{
     utility::clear();
     displayHeader();
     printf("Your Blue Tokens: %llu", currentUser->fund);
-    printf("\nEnter Amount to Send: ");
+    printf("\nEnter Amount to Send [0 to Cancel]: ");
     scanf("%llu", storage);
     getchar();
 
@@ -248,7 +250,7 @@ namespace sendMoneyScreen{
       while (true){
 
         getAmount(&newTransaction.amount, currentUser);
-        if (newTransaction.amount <= 0){
+        if (newTransaction.amount < 0){
 
           utility::setColor("FOREGROUND_RED");
           printf("\nAmount Must be Positive! Press Enter to Continue");
@@ -267,6 +269,8 @@ namespace sendMoneyScreen{
         } else break;
 
       }
+
+      if (newTransaction.amount == 0) continue;
 
       currentUser->fund -= newTransaction.amount;
       database::account::update(currentUser);

@@ -24,12 +24,15 @@ void hashTransaction(char storage[], char sender[], char receiver[], unsigned lo
   size_t receiverLength = strlen(receiver);
   size_t timeLength = strlen(time);
 
-  long long int result = 0;
+  int result = 0;
   for (size_t i = 1; i <= senderLength; i++) result += i * sender[i - 1];
   for (size_t i = 1; i <= receiverLength; i++) result += i * receiver[i - 1];
   for (size_t i = 1; i <= timeLength; i++) result += i * time[i - 1];
 
   itoa(result, storage, 10);
+
+  printf("\nTransaction Created with Hash: %s\n", storage);
+  getchar();
 
 }
 
@@ -44,7 +47,11 @@ Transaction* createTransaction(char sender[], char receiver[], unsigned long lon
   time_t currentTime = time(NULL);
   strncpy(newTransaction->time, ctime(&currentTime), BUFFERSIZE);
 
-  hashTransaction(newTransaction->hash, newTransaction->sender, newTransaction->receiver, newTransaction->amount, newTransaction->time);
+  hashTransaction(newTransaction->hash, 
+                  newTransaction->sender, 
+                  newTransaction->receiver, 
+                  newTransaction->amount, 
+                  newTransaction->time);
   
   return newTransaction;
 

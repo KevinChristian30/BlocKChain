@@ -14,7 +14,7 @@ namespace utility{
   #define BUFFERSIZE 255
   const HANDLE OUTPUTHANDLE = GetStdHandle(STD_OUTPUT_HANDLE);
 
-  #define FOREGROUND_WHITE 0x07
+  #define FOREGROUND_WHITE 0xF7
   #define FOREGROUND_LIGHTBLUE 0x09
 	
 	void clear(){
@@ -44,22 +44,22 @@ namespace utility{
 
   void setColor(const char* color){
 
-    if (strcmp(color, "FOREGROUND_RED") == 0) 
-      SetConsoleTextAttribute(OUTPUTHANDLE, FOREGROUND_RED);
+    if (strcmp(color, "FOREGROUND_RED") == 0) {}
+      // SetConsoleTextAttribute(OUTPUTHANDLE, FOREGROUND_RED);
       // SetConsoleTextAttribute(OUTPUTHANDLE, 0xF4);
       // SetConsoleTextAttribute(OUTPUTHANDLE, 0xF0);
-    else if (strcmp(color, "FOREGROUND_GREEN") == 0) 
-      SetConsoleTextAttribute(OUTPUTHANDLE, FOREGROUND_GREEN);
+    else if (strcmp(color, "FOREGROUND_GREEN") == 0) {}
+      // SetConsoleTextAttribute(OUTPUTHANDLE, FOREGROUND_GREEN);
       // SetConsoleTextAttribute(OUTPUTHANDLE, 0xF2);
       // SetConsoleTextAttribute(OUTPUTHANDLE, 0xF0);
-    else if (strcmp(color, "FOREGROUND_BLUE") == 0) 
-      SetConsoleTextAttribute(OUTPUTHANDLE, FOREGROUND_LIGHTBLUE);
+    else if (strcmp(color, "FOREGROUND_BLUE") == 0) {}
+      // SetConsoleTextAttribute(OUTPUTHANDLE, FOREGROUND_LIGHTBLUE);
       // SetConsoleTextAttribute(OUTPUTHANDLE, 0xF9);
       // SetConsoleTextAttribute(OUTPUTHANDLE, 0xF0);
-    else if (strcmp(color, "FOREGROUND_WHITE") == 0) 
-      SetConsoleTextAttribute(OUTPUTHANDLE, FOREGROUND_WHITE);
-    else if (strcmp(color, "BACKGROUND_WHITE") == 0)
-      SetConsoleTextAttribute(OUTPUTHANDLE, FOREGROUND_WHITE);
+    else if (strcmp(color, "FOREGROUND_WHITE") == 0) {}
+      // SetConsoleTextAttribute(OUTPUTHANDLE, FOREGROUND_WHITE);
+    else if (strcmp(color, "BACKGROUND_WHITE") == 0) {}
+      // SetConsoleTextAttribute(OUTPUTHANDLE, FOREGROUND_WHITE);
 
   }
 
