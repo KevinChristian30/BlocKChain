@@ -104,6 +104,7 @@ namespace miningScreen{
     Sleep(1000);
 
     unsigned long long int reward = totalProcessed * 0.1;
+    currentUser = database::account::findByUsername(currentUser->username);
     currentUser->fund += reward;
     database::account::update(currentUser);
 
